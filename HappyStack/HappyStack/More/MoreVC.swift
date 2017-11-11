@@ -18,15 +18,15 @@ class MoreVC : UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1//2
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (section == 0) ?  1 : 3 //"Safety first!" : "Help us :)"
+        return  3 //(section == 0) ?  1 : 3 //"Safety first!" : "Help us :)"
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return (section == 0) ? "Safety first!" : "Help us :)"
+        return "Help us :)" //(section == 0) ? "Safety first!" : "Help us :)"
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -37,11 +37,11 @@ class MoreVC : UITableViewController {
         
         if let c = cell {
             
-            if (indexPath.section == 0) {
-                c.accessoryType = .disclosureIndicator
-                c.textLabel?.textAlignment = .left
-                c.textLabel?.text = "Disclaimer"
-            } else {
+//            if (indexPath.section == 0) {
+//                c.accessoryType = .disclosureIndicator
+//                c.textLabel?.textAlignment = .left
+//                c.textLabel?.text = "Disclaimer"
+//            } else {
                 c.accessoryType = .none
                 c.textLabel?.textAlignment = .center
                 c.detailTextLabel?.textColor = .gray
@@ -58,16 +58,16 @@ class MoreVC : UITableViewController {
                 default:
                     break
                 }
-            }
+//            }
         }
         return cell!
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (indexPath.section == 0) {
-            seeDisclaimer()
-        }
-        if (indexPath.section == 1) {
+//        if (indexPath.section == 0) {
+//            seeDisclaimer()
+//        }
+//        if (indexPath.section == 1) {
             switch indexPath.row {
             case 0:
                 shareTheApp()
@@ -78,7 +78,7 @@ class MoreVC : UITableViewController {
             default:
                 break
             }
-        }
+//        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

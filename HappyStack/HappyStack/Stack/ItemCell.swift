@@ -12,6 +12,7 @@ import Stevia
 public class ItemCell: UITableViewCell {
     
     let name = UILabel()
+    let dosage = UILabel()
     let time = UILabel()
     
     static let reuseIdentifier = "ItemCell"
@@ -21,11 +22,12 @@ public class ItemCell: UITableViewCell {
         
         sv(
             name,
+            dosage,
             time
         )
         
-        name.centerVertically()
-        alignHorizontally(|-16-name-(<=16)-time-16-|)
+        alignHorizontally(|-16-name-(<=16)-dosage-time-16-|)
+        name.fillVertically().height(120)
         
         accessoryType = .disclosureIndicator
         time.style { l in

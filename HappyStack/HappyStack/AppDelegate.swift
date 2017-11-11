@@ -6,6 +6,12 @@
 //  Copyright © 2017 HappyStack. All rights reserved.
 //
 
+
+
+
+
+
+
 import UIKit
 
 @UIApplicationMain
@@ -16,7 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         sytleNavBar()
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = UINavigationController(rootViewController: StackVC())
+        
+        // Fake login
+        let stack = User.current.stack
+        let stackVC = StackVC(stack: stack)
+        window?.rootViewController = UINavigationController(rootViewController: stackVC)
         window?.makeKeyAndVisible()
         return true
     }

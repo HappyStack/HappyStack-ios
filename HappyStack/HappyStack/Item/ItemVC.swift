@@ -12,38 +12,59 @@ protocol ItemVCDelegate {
     func itemVCDidSaveOrDeleteItem()
 }
 
-class ItemVC:UIViewController {
+class ItemVC: UIViewController {
     
-    var item = Item()
+    var item:Item
     var v = ItemView()
     var delegate:ItemVCDelegate?
     
     override func loadView() { view = v }
     
+    var isNewItem = false
+    
+    init(item: Item) {
+        self.item = item
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    convenience init() {
+        self.init(item: Item(identifier: 982, name: "Unknown"))
+        self.isNewItem = true
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = (item.name == "") ? "New Item" : item.name
-        if presentingViewController != nil {
-            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel,
+        title = isNewItem ? "New Item" : item.name
+        
+        if isNewItem {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel,
                                                                target: self,
-                                                               action: #selector(ItemVC.close))
+                                                               action: #selector(close))
             v.nameField.becomeFirstResponder()
         } else {
             v.nameField.text = item.name
+            v.dosageField.text = item.dosage
             v.datePicker.date = item.time
         }
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.save,
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save,
                                                             target: self,
-                                                            action: #selector(ItemVC.save))
+                                                            action: #selector(save))
         
-        v.deleteButton.tap(delete)
-        v.deleteButton.isHidden = false
+        
+        v.deleteButton.addTarget(self, action: #selector(deleteItem), for: .touchUpInside)
+        v.deleteButton.isHidden = isNewItem
     }
     
-    @objc func save() {
+    @objc
+    func save() {
         item.name = v.nameField.text!
+        item.dosage = v.dosageField.text!
         
         
         let calendar = NSCalendar.current
@@ -68,7 +89,8 @@ class ItemVC:UIViewController {
         }
     }
     
-    func delete() {
+    @objc
+    func deleteItem() {
         let alert = UIAlertController(title: "Remove",
                                       message: "Do you really want to remove \(item.name) from your stack?",
             preferredStyle: .alert)
@@ -83,7 +105,7 @@ class ItemVC:UIViewController {
     
     @objc
     func close() {
-        if presentingViewController != nil {
+        if isNewItem {
             dismiss(animated: true, completion: nil)
         } else {
             navigationController?.popViewController(animated: true)

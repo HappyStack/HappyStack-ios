@@ -10,4 +10,10 @@ import Foundation
 
 class User {
     static var current = User()
+    let stack = Stack()
+}
+
+
+class Stack {
+    var items = [Item]()
 }

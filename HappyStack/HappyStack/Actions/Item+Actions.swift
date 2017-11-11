@@ -8,13 +8,17 @@
 
 import Foundation
 
-// TODO backend routes
+
 extension Item {
+    
     func saveInBackground() {
-        
+        let api = ApiProvider.api()
+        api.edit(item: self, completion: nil)
     }
     
     func deleteInBackground() {
-        
+        let api = ApiProvider.api()
+        api.delete(item: self, completion: nil)
     }
 }
+                    

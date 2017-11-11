@@ -11,6 +11,7 @@ import Stevia
 class ItemView: UIView {
     
     let nameField = UITextField()
+    let dosageField = UITextField()
     let datePicker = UIDatePicker()
     let deleteButton = UIButton(type: .custom)
     
@@ -19,6 +20,7 @@ class ItemView: UIView {
     
         sv(
             nameField,
+            dosageField,
             datePicker,
             deleteButton
         )
@@ -26,7 +28,8 @@ class ItemView: UIView {
         layout(
             80,
             |-nameField-|,
-            "",
+            |-dosageField-|,
+            <=20,
             |datePicker|,
             |-deleteButton-| ~ 60,
             0
@@ -35,7 +38,12 @@ class ItemView: UIView {
         backgroundColor = .white
         nameField.style { f in
             f.backgroundColor = .white
-            f.placeholder = "Name"
+            f.font = UIFont(name: "HelveticaNeue-Light", size: 40)
+            f.textAlignment = .center
+            f.returnKeyType = .done
+        }
+        dosageField.style { f in
+            f.backgroundColor = .white
             f.font = UIFont(name: "HelveticaNeue-Light", size: 40)
             f.textAlignment = .center
             f.returnKeyType = .done
@@ -51,13 +59,22 @@ class ItemView: UIView {
             b.setTitleColor(.red, for: .normal)
         }
         
+        
+        nameField.placeholder = "Name"
+        dosageField.placeholder = "Dosage"
+        
         nameField.delegate = self
+        dosageField.delegate = self
     }
 }
 
 extension ItemView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        if textField == nameField {
+            dosageField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
         return true
     }
 }

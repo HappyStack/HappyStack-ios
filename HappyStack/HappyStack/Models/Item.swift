@@ -8,9 +8,17 @@
 
 import Foundation
 
-class Item {
+struct Item {
+    
+    let identifier: Int
     var name: String = ""
+    var dosage: String = ""
     var time: Date = Date()
     var createdBy: User?
     var isChecked: Bool = false
+    
+    init(identifier: Int, name: String) {
+        self.identifier = identifier
+        self.name = name
+    }
 }

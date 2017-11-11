@@ -10,7 +10,8 @@ import UIKit
 
 extension ItemCell {
     func render(with item:Item) {
-        name.text = item.name
+        name.text = item.name.capitalized
+        dosage.text = item.dosage
         let df = DateFormatter()
         df.locale = Locale(identifier: "en_US")
         df.dateFormat = "h:mm"// a"

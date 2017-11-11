@@ -10,7 +10,25 @@ import UIKit
 
 class StackVC: UITableViewController, ItemVCDelegate {
     
-    var items = [Item]()
+    let stack: Stack
+    var items: [Item] { return stack.items }
+    
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    init(stack: Stack) {
+        self.stack = stack
+        super.init(style: .plain)
+        title = "My Stack"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "...", style: .plain, target: self, action: #selector(showMore))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(addNutrient))
+        tableView.register( ItemCell.self, forCellReuseIdentifier: ItemCell.reuseIdentifier)
+        refresh()
+    }
+    
+    
     var rc = UIRefreshControl()
     
     var morningItems:[Item] { return items.filter { item in noon.compare(item.time) == .orderedDescending } }
@@ -38,31 +56,22 @@ class StackVC: UITableViewController, ItemVCDelegate {
         d = calendar.date(from: ba)!
         return d
     }()
-    
-    convenience init() {
-        self.init(style: .plain)
-        title = "My Stack"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "...", style: .plain, target: self, action: #selector(showMore))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(addNutrient))
-        tableView.register( ItemCell.self, forCellReuseIdentifier: ItemCell.reuseIdentifier)
-        refresh()
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         rc.addTarget(self, action: #selector(StackVC.refresh), for: .valueChanged)
         tableView.addSubview(rc)
-        tableView.estimatedRowHeight = 80
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 200
     }
     
     @objc
     func refresh() {
-        User.current.fetchStack { fetchedItems in
+        stack.fetch {
             self.rc.endRefreshing()
-            self.items = fetchedItems
             
             //ODER BY DATE
-            self.items.sort(by:{ (a, b) -> Bool in
+            self.items.sorted(by: { (a, b) -> Bool in
                 
                 let calendar = Calendar.current
                 let x:Set<Calendar.Component> = [.hour, .minute]
@@ -151,8 +160,7 @@ class StackVC: UITableViewController, ItemVCDelegate {
         default:()
         }
         
-        let itemVC = ItemVC()
-        itemVC.item = item
+        let itemVC = ItemVC(item: item)
         itemVC.delegate = self
         navigationController?.pushViewController(itemVC, animated: true)
     }

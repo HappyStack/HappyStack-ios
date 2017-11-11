@@ -10,10 +10,12 @@
 		990490E31FB48F2A00BE3E2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990490E21FB48F2A00BE3E2F /* AppDelegate.swift */; };
 		990490EA1FB48F2A00BE3E2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 990490E91FB48F2A00BE3E2F /* Assets.xcassets */; };
 		990490ED1FB48F2A00BE3E2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 990490EB1FB48F2A00BE3E2F /* LaunchScreen.storyboard */; };
+		992AC2E51FB705B30054E711 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992AC2E41FB705B30054E711 /* Api.swift */; };
+		992AC2E71FB706F00054E711 /* FakeApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992AC2E61FB706F00054E711 /* FakeApi.swift */; };
 		99A07D701FB583F100ABC308 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A07D6F1FB583F100ABC308 /* Item.swift */; };
 		99A07D721FB5840500ABC308 /* Item+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A07D711FB5840500ABC308 /* Item+Actions.swift */; };
 		99A07D741FB5841500ABC308 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A07D731FB5841500ABC308 /* User.swift */; };
-		99A07D761FB5842200ABC308 /* User+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A07D751FB5842200ABC308 /* User+Actions.swift */; };
+		99A07D761FB5842200ABC308 /* Stack+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A07D751FB5842200ABC308 /* Stack+Actions.swift */; };
 		99A07D781FB5845700ABC308 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A07D771FB5845700ABC308 /* ItemCell.swift */; };
 		99A07D801FB5863C00ABC308 /* Stevia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99A07D7F1FB5863C00ABC308 /* Stevia.framework */; };
 		99A07D821FB5866E00ABC308 /* ItemCell+Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A07D811FB5866E00ABC308 /* ItemCell+Item.swift */; };
@@ -29,10 +31,12 @@
 		990490E91FB48F2A00BE3E2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		990490EC1FB48F2A00BE3E2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		990490EE1FB48F2A00BE3E2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		992AC2E41FB705B30054E711 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		992AC2E61FB706F00054E711 /* FakeApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeApi.swift; sourceTree = "<group>"; };
 		99A07D6F1FB583F100ABC308 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		99A07D711FB5840500ABC308 /* Item+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+Actions.swift"; sourceTree = "<group>"; };
 		99A07D731FB5841500ABC308 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		99A07D751FB5842200ABC308 /* User+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Actions.swift"; sourceTree = "<group>"; };
+		99A07D751FB5842200ABC308 /* Stack+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Stack+Actions.swift"; sourceTree = "<group>"; };
 		99A07D771FB5845700ABC308 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		99A07D7F1FB5863C00ABC308 /* Stevia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Stevia.framework; path = Carthage/Build/iOS/Stevia.framework; sourceTree = "<group>"; };
 		99A07D811FB5866E00ABC308 /* ItemCell+Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemCell+Item.swift"; sourceTree = "<group>"; };
@@ -75,6 +79,8 @@
 			isa = PBXGroup;
 			children = (
 				990490E21FB48F2A00BE3E2F /* AppDelegate.swift */,
+				992AC2E41FB705B30054E711 /* Api.swift */,
+				992AC2E61FB706F00054E711 /* FakeApi.swift */,
 				99A07D791FB5846800ABC308 /* Stack */,
 				99A07D851FB5875000ABC308 /* Item */,
 				99A07D7C1FB5849700ABC308 /* Models */,
@@ -109,7 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				99A07D711FB5840500ABC308 /* Item+Actions.swift */,
-				99A07D751FB5842200ABC308 /* User+Actions.swift */,
+				99A07D751FB5842200ABC308 /* Stack+Actions.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -231,11 +237,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				99A07D781FB5845700ABC308 /* ItemCell.swift in Sources */,
+				992AC2E71FB706F00054E711 /* FakeApi.swift in Sources */,
 				99A07D701FB583F100ABC308 /* Item.swift in Sources */,
 				99D53ED81FB58050000F286D /* MoreVC.swift in Sources */,
 				99A07D841FB586CD00ABC308 /* ItemView.swift in Sources */,
-				99A07D761FB5842200ABC308 /* User+Actions.swift in Sources */,
+				99A07D761FB5842200ABC308 /* Stack+Actions.swift in Sources */,
 				99A07D871FB5876100ABC308 /* ItemVC.swift in Sources */,
+				992AC2E51FB705B30054E711 /* Api.swift in Sources */,
 				99A07D821FB5866E00ABC308 /* ItemCell+Item.swift in Sources */,
 				99A07D741FB5841500ABC308 /* User.swift in Sources */,
 				990490E31FB48F2A00BE3E2F /* AppDelegate.swift in Sources */,
