@@ -22,6 +22,7 @@ final class LoginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Login"
         v.login.addTarget(self, action: #selector(login), for: .touchUpInside)
         prefillWithPreviouslyUsedEmail()
     }
