@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             let loginVC = LoginVC()
             loginVC.delegate = self
-            window?.rootViewController = UINavigationController(rootViewController: loginVC)
+            window?.rootViewController = HSNAvigationController(rootViewController: loginVC)
         }
         
         window?.makeKeyAndVisible()
@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func startLoggedInApp(user: User) {
         let stackVC = StackVC(stack: user.stack)
-        window?.rootViewController = UINavigationController(rootViewController: stackVC)
+        window?.rootViewController = HSNAvigationController(rootViewController: stackVC)
     }
     
     func sytleNavBar() {
@@ -48,5 +48,9 @@ extension AppDelegate: LoginVCDelegate {
     func loginVCDidLogin(user: User) {
         startLoggedInApp(user: user)
     }
+}
+
+class HSNAvigationController: UINavigationController {
+    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
 }
 
