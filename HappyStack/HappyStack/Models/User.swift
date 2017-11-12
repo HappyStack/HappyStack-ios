@@ -9,7 +9,7 @@
 import Foundation
 
 class User {
-    static var current = User()
+    static var current: User?
     let stack = Stack()
 }
 
@@ -17,3 +17,4 @@ class User {
 class Stack {
     var items = [Item]()
 }
+                                                                                                    

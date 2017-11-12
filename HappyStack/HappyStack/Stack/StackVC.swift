@@ -67,11 +67,10 @@ class StackVC: UITableViewController, ItemVCDelegate {
     
     @objc
     func refresh() {
-        stack.fetch {
+        stack.fetch().then {
             self.rc.endRefreshing()
             
-            //ODER BY DATE
-            self.items.sorted(by: { (a, b) -> Bool in
+            self.stack.items.sort(by:{ (a, b) -> Bool in
                 
                 let calendar = Calendar.current
                 let x:Set<Calendar.Component> = [.hour, .minute]

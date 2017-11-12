@@ -7,13 +7,13 @@
 //
 
 import Foundation
+import then
 
 extension Stack {
-    func fetch(completion:() -> Void) {
+    func fetch() -> EmptyPromise {
         let api = ApiProvider.api()
-        api.fetchItemsForStack(stack: self) { items in
+        return api.fetchItemsForStack(stack: self).then { items in
             self.items = items
-            completion()
         }
     }
 }

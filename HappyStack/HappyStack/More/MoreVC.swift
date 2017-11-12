@@ -18,15 +18,15 @@ class MoreVC : UITableViewController {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1//2
+        return 2
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  3 //(section == 0) ?  1 : 3 //"Safety first!" : "Help us :)"
+        return (section == 0) ?  3 : 1
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Help us :)" //(section == 0) ? "Safety first!" : "Help us :)"
+        return (section == 0) ? "Help us :)" : "" // "Safety first!" : "Help us :)"
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -42,6 +42,7 @@ class MoreVC : UITableViewController {
 //                c.textLabel?.textAlignment = .left
 //                c.textLabel?.text = "Disclaimer"
 //            } else {
+            if (indexPath.section == 0) {
                 c.accessoryType = .none
                 c.textLabel?.textAlignment = .center
                 c.detailTextLabel?.textColor = .gray
@@ -58,7 +59,10 @@ class MoreVC : UITableViewController {
                 default:
                     break
                 }
-//            }
+            } else {
+                c.textLabel?.textAlignment = .center
+                c.textLabel?.text = "Logout"
+            }
         }
         return cell!
     }
@@ -67,7 +71,7 @@ class MoreVC : UITableViewController {
 //        if (indexPath.section == 0) {
 //            seeDisclaimer()
 //        }
-//        if (indexPath.section == 1) {
+        if (indexPath.section == 0) {
             switch indexPath.row {
             case 0:
                 shareTheApp()
@@ -78,7 +82,9 @@ class MoreVC : UITableViewController {
             default:
                 break
             }
-//        }
+        } else {
+            logout()
+        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -121,6 +127,11 @@ class MoreVC : UITableViewController {
         mailVC.setSubject("Feedback HappyStack")
         mailVC.setToRecipients(["sachadso@gmail.com", "nerv.junker@gmail.com"])
         present(mailVC, animated: true, completion: nil)
+    }
+    
+    func logout() {
+        User.current?.logout()
+        print("logout")
     }
 }
 

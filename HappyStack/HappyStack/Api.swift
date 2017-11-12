@@ -7,11 +7,14 @@
 //
 
 import Foundation
+import then
 
 protocol Api {
-    func fetchItemsForStack(stack: Stack, completion: ([Item]) -> Void)
-    func delete(item: Item, completion:(() -> Void)?)
-    func edit(item: Item, completion:(() -> Void)?)
+    func fetchItemsForStack(stack: Stack) -> Promise<[Item]>
+    func delete(item: Item) -> EmptyPromise
+    func edit(item: Item) -> EmptyPromise
+    func login(username: String, password:String) -> Promise<User>
+    func logout()
 }
 
 class ApiProvider { }
