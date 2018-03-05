@@ -24,7 +24,7 @@ class StackVC: UITableViewController, ItemVCDelegate {
         title = "My Stack"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "...", style: .plain, target: self, action: #selector(showMore))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(addNutrient))
-        tableView.register( ItemCell.self, forCellReuseIdentifier: ItemCell.reuseIdentifier)
+        tableView.register(ItemCell.self, forCellReuseIdentifier: ItemCell.reuseIdentifier)
         refresh()
     }
     
@@ -33,8 +33,8 @@ class StackVC: UITableViewController, ItemVCDelegate {
     
     var morningItems:[Item] { return items.filter { item in noon.compare(item.time) == .orderedDescending } }
     var dayItems:[Item] { return items.filter { i in
-        !morningItems.contains(where: { $0.name == i.name })
-            && !eveningItems.contains(where: { $0.name == i.name })
+        !morningItems.contains(where: { $0.identifier == i.identifier })
+            && !eveningItems.contains(where: { $0.identifier == i.identifier })
         }
     }
     var eveningItems:[Item] { return items.filter { item in sixPm.compare(item.time) == .orderedAscending } }
@@ -135,8 +135,7 @@ class StackVC: UITableViewController, ItemVCDelegate {
         }
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //        let cell = tableView.dequeueReusableCellWithIdentifier(ItemCell.reuseIdentifier, forIndexPath: indexPath) as! ItemCell
+    func item(for indexPath: IndexPath) -> Item {
         var item:Item!
         switch indexPath.section {
         case 0: item = morningItems[indexPath.row]
@@ -144,8 +143,15 @@ class StackVC: UITableViewController, ItemVCDelegate {
         case 2: item = eveningItems[indexPath.row]
         default:()
         }
-        
-        let cell = ItemCell()
+        return item
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = self.item(for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ItemCell.reuseIdentifier,
+                                                       for: indexPath) as? ItemCell else {
+            return UITableViewCell()
+        }
         cell.render(with: item)
         return cell
     }
@@ -169,7 +175,6 @@ class StackVC: UITableViewController, ItemVCDelegate {
         let itemVC = ItemVC()
         itemVC.delegate = self
         let navVC = UINavigationController(rootViewController: itemVC)
-        navVC.navigationBar.isTranslucent = false
         present(navVC, animated: true, completion: nil)
     }
     
@@ -180,5 +185,40 @@ class StackVC: UITableViewController, ItemVCDelegate {
     @objc
     func showMore() {
         navigationController?.pushViewController(MoreVC(), animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let selectedItem = item(for: indexPath)
+        let delete = UIContextualAction(style: .destructive, title: "Delete") { action, view, block in
+            selectedItem.deleteInBackground()
+            block(true)
+        }
+        return UISwipeActionsConfiguration(actions: [delete])
+    }
+    
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let selectedItem = item(for: indexPath)
+        let action = UIContextualAction(style: .normal, title: selectedItem.isChecked ? "Untake" : "Take") { action, view, block in
+            let checked = !selectedItem.isChecked
+            let editedItem = Item(identifier: selectedItem.identifier,
+                                  name: selectedItem.name,
+                                  dosage: selectedItem.dosage,
+                                  time: selectedItem.time,
+                                  isChecked: checked)
+            editedItem.saveInBackground()
+            block(true)
+            
+            self.refresh()
+//            if let index = self.stack.items.index(where: { $0.identifier != editedItem.identifier }) {
+//                self.stack.items.remove(at: index)
+//                self.stack.items.insert(editedItem, at: index)
+////                tableView.reloadRows(at: [indexPath], with: .none)
+//            }
+//            tableView.reloadData()
+
+            
+        }
+        action.backgroundColor = .green
+        return UISwipeActionsConfiguration(actions: [action])
     }
 }

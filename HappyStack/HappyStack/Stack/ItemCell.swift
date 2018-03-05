@@ -14,6 +14,7 @@ public class ItemCell: UITableViewCell {
     let name = UILabel()
     let dosage = UILabel()
     let time = UILabel()
+    let takenIndicator = UIView()
     
     static let reuseIdentifier = "ItemCell"
     public required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
@@ -23,16 +24,20 @@ public class ItemCell: UITableViewCell {
         sv(
             name,
             dosage,
-            time
+            time,
+            takenIndicator
         )
         
         alignHorizontally(|-16-name-(<=16)-dosage-time-16-|)
         name.fillVertically().height(120)
+        
+        |takenIndicator.width(5).fillVertically()
         
         accessoryType = .disclosureIndicator
         time.style { l in
             l.textAlignment = .right
             l.textColor = .gray
         }
+        takenIndicator.backgroundColor = .green
     }
 }

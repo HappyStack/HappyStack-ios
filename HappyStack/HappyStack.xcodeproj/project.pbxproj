@@ -15,7 +15,7 @@
 		9912FC5A1FB851560047E37D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9912FC591FB851560047E37D /* LoginView.swift */; };
 		9912FC5D1FB852280047E37D /* User+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9912FC5C1FB852280047E37D /* User+Actions.swift */; };
 		992AC2E51FB705B30054E711 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992AC2E41FB705B30054E711 /* Api.swift */; };
-		992AC2E71FB706F00054E711 /* FakeApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992AC2E61FB706F00054E711 /* FakeApi.swift */; };
+		992AC2E71FB706F00054E711 /* LocalApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992AC2E61FB706F00054E711 /* LocalApi.swift */; };
 		99A07D701FB583F100ABC308 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A07D6F1FB583F100ABC308 /* Item.swift */; };
 		99A07D721FB5840500ABC308 /* Item+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A07D711FB5840500ABC308 /* Item+Actions.swift */; };
 		99A07D741FB5841500ABC308 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A07D731FB5841500ABC308 /* User.swift */; };
@@ -41,7 +41,7 @@
 		9912FC591FB851560047E37D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		9912FC5C1FB852280047E37D /* User+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Actions.swift"; sourceTree = "<group>"; };
 		992AC2E41FB705B30054E711 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
-		992AC2E61FB706F00054E711 /* FakeApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeApi.swift; sourceTree = "<group>"; };
+		992AC2E61FB706F00054E711 /* LocalApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalApi.swift; sourceTree = "<group>"; };
 		99A07D6F1FB583F100ABC308 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		99A07D711FB5840500ABC308 /* Item+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+Actions.swift"; sourceTree = "<group>"; };
 		99A07D731FB5841500ABC308 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -91,7 +91,7 @@
 			children = (
 				990490E21FB48F2A00BE3E2F /* AppDelegate.swift */,
 				992AC2E41FB705B30054E711 /* Api.swift */,
-				992AC2E61FB706F00054E711 /* FakeApi.swift */,
+				992AC2E61FB706F00054E711 /* LocalApi.swift */,
 				9912FC571FB8514F0047E37D /* LoginVC.swift */,
 				99DB856C1FB8598A00720109 /* Keyboard.swift */,
 				9912FC591FB851560047E37D /* LoginView.swift */,
@@ -255,7 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				99A07D781FB5845700ABC308 /* ItemCell.swift in Sources */,
-				992AC2E71FB706F00054E711 /* FakeApi.swift in Sources */,
+				992AC2E71FB706F00054E711 /* LocalApi.swift in Sources */,
 				9912FC581FB8514F0047E37D /* LoginVC.swift in Sources */,
 				9912FC5A1FB851560047E37D /* LoginView.swift in Sources */,
 				99A07D701FB583F100ABC308 /* Item.swift in Sources */,
@@ -400,6 +400,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4TATSTJ3J3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -418,6 +419,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4TATSTJ3J3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",

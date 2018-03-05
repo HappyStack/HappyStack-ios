@@ -8,17 +8,23 @@
 
 import Foundation
 
-struct Item {
+struct Item: Codable {
     
-    let identifier: Int
-    var name: String = ""
-    var dosage: String = ""
-    var time: Date = Date()
-    var createdBy: User?
-    var isChecked: Bool = false
+    let identifier: String
+    let name: String
+    let dosage: String
+    let time: Date
+    let isChecked: Bool
     
-    init(identifier: Int, name: String) {
+    init(identifier: String = UUID().uuidString,
+         name: String,
+         dosage: String = "",
+         time: Date = Date(),
+         isChecked: Bool = false) {
         self.identifier = identifier
         self.name = name
+        self.dosage = dosage
+        self.time = time
+        self.isChecked = isChecked
     }
 }

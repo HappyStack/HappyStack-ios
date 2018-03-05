@@ -14,7 +14,11 @@ protocol ItemVCDelegate {
 
 class ItemVC: UIViewController {
     
-    var item:Item
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    var item: Item
     var v = ItemView()
     var delegate:ItemVCDelegate?
     
@@ -28,7 +32,7 @@ class ItemVC: UIViewController {
     }
     
     convenience init() {
-        self.init(item: Item(identifier: 982, name: "Unknown"))
+        self.init(item: Item(name: "Unknown"))
         self.isNewItem = true
     }
     
@@ -63,17 +67,17 @@ class ItemVC: UIViewController {
     
     @objc
     func save() {
-        item.name = v.nameField.text!
-        item.dosage = v.dosageField.text!
         
+        let name = v.nameField.text!
+        let dosage = v.dosageField.text!
         
         let calendar = NSCalendar.current
         let ca = calendar.dateComponents( [.hour, .minute], from:  v.datePicker.date)
-        let atime = calendar.date(from: ca)!
+        let time = calendar.date(from: ca)!
         
-        item.time = atime
-        item.createdBy = User.current
-        item.saveInBackground()
+        let editedItem = Item(identifier:item.identifier, name: name, dosage: dosage, time: time, isChecked: item.isChecked)
+        editedItem.saveInBackground()
+        
         close()
         delegate?.itemVCDidSaveOrDeleteItem()
         

@@ -17,14 +17,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         sytleNavBar()
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        if let user = User.current {
-            startLoggedInApp(user: user)
-        } else {
-
-            let loginVC = LoginVC()
-            loginVC.delegate = self
-            window?.rootViewController = HSNAvigationController(rootViewController: loginVC)
-        }
+        
+        User.current = User()
+        startLoggedInApp(user: User.current!)
+//        if let user = User.current {
+//            
+//        } else {
+//
+//            let loginVC = LoginVC()
+//            loginVC.delegate = self
+//            window?.rootViewController = HSNAvigationController(rootViewController: loginVC)
+//        }
         
         window?.makeKeyAndVisible()
         return true

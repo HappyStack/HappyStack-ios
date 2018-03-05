@@ -14,7 +14,24 @@ class User {
 }
 
 
-class Stack {
+class Stack: Codable {
     var items = [Item]()
 }
-                                                                                                    
+
+//public struct YPOptin: Codable {
+//
+//    public var identifier: String = ""
+//    public var origin: Int = 0
+//    public var hasBeenSent: Bool = false
+//    public var hasBeenDisplayed: Bool = false
+//    public var isFullOptin = true
+//
+//    public init() { }
+//    public init(identifier: String, origin: Int) {
+//        self.identifier = identifier
+//        self.origin = origin
+//    }
+//}
+//
+//
+
