@@ -8,12 +8,21 @@
 
 import Foundation
 
+
+enum Serving:String, Codable {
+    case scoop
+    case pill
+    case drop
+}
+
 struct Item: Codable {
     
     let identifier: String
     let name: String
     let dosage: String
     let time: Date
+    var serving = Serving.pill
+    var servingSize: Int = 1
     let isChecked: Bool
     
     init(identifier: String = UUID().uuidString,

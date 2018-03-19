@@ -27,6 +27,8 @@
 		99A07D871FB5876100ABC308 /* ItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A07D861FB5876100ABC308 /* ItemVC.swift */; };
 		99D53ED81FB58050000F286D /* MoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D53ED71FB58050000F286D /* MoreVC.swift */; };
 		99D53EDA1FB583A4000F286D /* StackVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D53ED91FB583A4000F286D /* StackVC.swift */; };
+		99DA0FF720603F8F003AC3B1 /* NewSupplementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DA0FF620603F8F003AC3B1 /* NewSupplementVC.swift */; };
+		99DA0FF920603FCD003AC3B1 /* NewSupplementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DA0FF820603FCD003AC3B1 /* NewSupplementView.swift */; };
 		99DB856D1FB8598A00720109 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DB856C1FB8598A00720109 /* Keyboard.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +55,8 @@
 		99A07D861FB5876100ABC308 /* ItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemVC.swift; sourceTree = "<group>"; };
 		99D53ED71FB58050000F286D /* MoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreVC.swift; sourceTree = "<group>"; };
 		99D53ED91FB583A4000F286D /* StackVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackVC.swift; sourceTree = "<group>"; };
+		99DA0FF620603F8F003AC3B1 /* NewSupplementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSupplementVC.swift; sourceTree = "<group>"; };
+		99DA0FF820603FCD003AC3B1 /* NewSupplementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSupplementView.swift; sourceTree = "<group>"; };
 		99DB856C1FB8598A00720109 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,6 +162,8 @@
 			children = (
 				99A07D831FB586CD00ABC308 /* ItemView.swift */,
 				99A07D861FB5876100ABC308 /* ItemVC.swift */,
+				99DA0FF620603F8F003AC3B1 /* NewSupplementVC.swift */,
+				99DA0FF820603FCD003AC3B1 /* NewSupplementView.swift */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -266,6 +272,8 @@
 				992AC2E51FB705B30054E711 /* Api.swift in Sources */,
 				99A07D821FB5866E00ABC308 /* ItemCell+Item.swift in Sources */,
 				9912FC5D1FB852280047E37D /* User+Actions.swift in Sources */,
+				99DA0FF920603FCD003AC3B1 /* NewSupplementView.swift in Sources */,
+				99DA0FF720603F8F003AC3B1 /* NewSupplementVC.swift in Sources */,
 				99A07D741FB5841500ABC308 /* User.swift in Sources */,
 				99DB856D1FB8598A00720109 /* Keyboard.swift in Sources */,
 				990490E31FB48F2A00BE3E2F /* AppDelegate.swift in Sources */,

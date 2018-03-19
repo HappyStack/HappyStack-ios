@@ -29,6 +29,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            window?.rootViewController = HSNAvigationController(rootViewController: loginVC)
 //        }
         
+//        var vitaminD = Item(identifier: "gv3rf3",
+//                        name: "Vitamin D3",
+//                        dosage: "5000 UI",
+//                        time: Date(),
+//                        isChecked: true)
+//
+//        vitaminD.serving = .pill
+//        vitaminD.servingSize = 1
+//
+//
+//        var whey = Item(identifier: "gv3f3",
+//                            name: "Whey",
+//                            dosage: "30g",
+//                            time: Date(),
+//                            isChecked: true)
+//        whey.serving = .scoop
+        
+       window?.rootViewController = NewSupplementVC()
+        
         window?.makeKeyAndVisible()
         return true
     }
