@@ -7,8 +7,28 @@
 //
 
 import UIKit
+import Stevia
 
-class StackVC: UITableViewController, ItemVCDelegate {
+class StackView: UIView {
+    
+    let tableView = UITableView(frame: .zero, style: .grouped)
+    
+    convenience init() {
+        self.init(frame: CGRect.zero)
+        
+        sv(
+            tableView
+        )
+        
+        tableView.fillHorizontally(m: 10).fillVertically()
+        
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
+        
+    }
+}
+
+class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableViewDelegate {
     
     let stack: Stack
     var items: [Item] { return stack.items }
@@ -20,14 +40,19 @@ class StackVC: UITableViewController, ItemVCDelegate {
     
     init(stack: Stack) {
         self.stack = stack
-        super.init(style: .plain)
+        super.init(nibName: nil, bundle: nil)
         title = "My Stack"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "...", style: .plain, target: self, action: #selector(showMore))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(addNutrient))
-        tableView.register(ItemCell.self, forCellReuseIdentifier: ItemCell.reuseIdentifier)
+        v.tableView.register(ItemCell.self, forCellReuseIdentifier: ItemCell.reuseIdentifier)
+        v.tableView.dataSource = self
+        v.tableView.delegate = self
+        
         refresh()
     }
     
+    let v = StackView()
+    override func loadView() { view = v }
     
     var rc = UIRefreshControl()
     
@@ -60,9 +85,9 @@ class StackVC: UITableViewController, ItemVCDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         rc.addTarget(self, action: #selector(StackVC.refresh), for: .valueChanged)
-        tableView.addSubview(rc)
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 200
+        v.tableView.addSubview(rc)
+        v.tableView.rowHeight = 78
+//        v.tableView.estimatedRowHeight = 200
     }
     
     @objc
@@ -83,7 +108,7 @@ class StackVC: UITableViewController, ItemVCDelegate {
                 
                 return atime.compare(btime) == .orderedAscending
             })
-            self.tableView.reloadData()
+            self.v.tableView.reloadData()
             self.scheduleNotification()
         }
     }
@@ -113,7 +138,7 @@ class StackVC: UITableViewController, ItemVCDelegate {
         //            }
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0: return morningItems.count
         case 1: return dayItems.count
@@ -122,15 +147,15 @@ class StackVC: UITableViewController, ItemVCDelegate {
         }
     }
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case 0: return "Morning"
-        case 1: return "Day"
-        case 2: return "Evening"
+        case 0: return "This morning"
+        case 1: return "This afternoon"
+        case 2: return "This evening"
         default: return ""
         }
     }
@@ -146,7 +171,7 @@ class StackVC: UITableViewController, ItemVCDelegate {
         return item
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = self.item(for: indexPath)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ItemCell.reuseIdentifier,
                                                        for: indexPath) as? ItemCell else {
@@ -156,7 +181,7 @@ class StackVC: UITableViewController, ItemVCDelegate {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var item:Item!
         switch indexPath.section {
         case 0: item = morningItems[indexPath.row]
@@ -167,7 +192,11 @@ class StackVC: UITableViewController, ItemVCDelegate {
         
         let itemVC = ItemVC(item: item)
         itemVC.delegate = self
-        navigationController?.pushViewController(itemVC, animated: true)
+        
+        let navVC = UINavigationController(rootViewController: itemVC)
+        present(navVC, animated: true, completion: nil)
+        
+//        navigationController?.pushViewController(itemVC, animated: true)
     }
     
     @objc
@@ -179,7 +208,12 @@ class StackVC: UITableViewController, ItemVCDelegate {
     }
     
     func itemVCDidSaveOrDeleteItem() {
+        dismiss(animated: true, completion: nil)
         refresh()
+    }
+    
+    func itemVCDidTapCancel() {
+        dismiss(animated: true, completion: nil)
     }
     
     @objc
@@ -187,7 +221,7 @@ class StackVC: UITableViewController, ItemVCDelegate {
         navigationController?.pushViewController(MoreVC(), animated: true)
     }
     
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let selectedItem = item(for: indexPath)
         let delete = UIContextualAction(style: .destructive, title: "Delete") { action, view, block in
             selectedItem.deleteInBackground()
@@ -196,7 +230,7 @@ class StackVC: UITableViewController, ItemVCDelegate {
         return UISwipeActionsConfiguration(actions: [delete])
     }
     
-    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let selectedItem = item(for: indexPath)
         let action = UIContextualAction(style: .normal, title: selectedItem.isChecked ? "Untake" : "Take") { action, view, block in
             let checked = !selectedItem.isChecked

@@ -21,5 +21,6 @@ extension ItemCell {
         name.alpha = item.isChecked ? 0.2 : 1
         dosage.alpha = item.isChecked ? 0.2 : 1
         time.alpha = item.isChecked ? 0.2 : 1
+        servingSize.text = "\(item.servingSize)"
     }
 }

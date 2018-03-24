@@ -10,6 +10,7 @@
 		990490E31FB48F2A00BE3E2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990490E21FB48F2A00BE3E2F /* AppDelegate.swift */; };
 		990490EA1FB48F2A00BE3E2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 990490E91FB48F2A00BE3E2F /* Assets.xcassets */; };
 		990490ED1FB48F2A00BE3E2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 990490EB1FB48F2A00BE3E2F /* LaunchScreen.storyboard */; };
+		99062D1720664B2C00E7029A /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99062D1620664B2C00E7029A /* MainVC.swift */; };
 		99117A891FB85EF8003CA447 /* then.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99117A881FB85EF8003CA447 /* then.framework */; };
 		9912FC581FB8514F0047E37D /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9912FC571FB8514F0047E37D /* LoginVC.swift */; };
 		9912FC5A1FB851560047E37D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9912FC591FB851560047E37D /* LoginView.swift */; };
@@ -38,6 +39,7 @@
 		990490E91FB48F2A00BE3E2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		990490EC1FB48F2A00BE3E2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		990490EE1FB48F2A00BE3E2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		99062D1620664B2C00E7029A /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		99117A881FB85EF8003CA447 /* then.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = then.framework; path = Carthage/Build/iOS/then.framework; sourceTree = "<group>"; };
 		9912FC571FB8514F0047E37D /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		9912FC591FB851560047E37D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				9912FC571FB8514F0047E37D /* LoginVC.swift */,
 				99DB856C1FB8598A00720109 /* Keyboard.swift */,
 				9912FC591FB851560047E37D /* LoginView.swift */,
+				99062D1620664B2C00E7029A /* MainVC.swift */,
 				99A07D791FB5846800ABC308 /* Stack */,
 				99A07D851FB5875000ABC308 /* Item */,
 				99A07D7C1FB5849700ABC308 /* Models */,
@@ -261,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				99A07D781FB5845700ABC308 /* ItemCell.swift in Sources */,
+				99062D1720664B2C00E7029A /* MainVC.swift in Sources */,
 				992AC2E71FB706F00054E711 /* LocalApi.swift in Sources */,
 				9912FC581FB8514F0047E37D /* LoginVC.swift in Sources */,
 				9912FC5A1FB851560047E37D /* LoginView.swift in Sources */,

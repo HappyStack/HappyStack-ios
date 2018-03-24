@@ -28,10 +28,10 @@ class FieldComponent: UIView {
         
         stack.axis = .vertical
         title.style { l in
-            l.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
+            l.font = UIFont.systemFont(ofSize: 13.5, weight: .semibold)
             l.textColor = UIColor(red: 153/255.0, green: 153/255.0, blue: 153/255.0, alpha: 1)
         }
-        field.font = UIFont.systemFont(ofSize: 36, weight: .light)
+        field.font = UIFont.systemFont(ofSize: 35, weight: .light)
     }
 }
 
@@ -62,9 +62,11 @@ class ServingTypeComponent: UIView {
             l.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
             l.textColor = UIColor(red: 153/255.0, green: 153/255.0, blue: 153/255.0, alpha: 1)
         }
+        horizontalStack.layoutMargins.left = -11
+        horizontalStack.isLayoutMarginsRelativeArrangement = true
         stack.axis = .vertical
-        stack.spacing = 10
-        horizontalStack.spacing = 20
+        stack.spacing = -1
+        horizontalStack.spacing = 9
         images.forEach { $0.contentMode = .center }
     }
 }
@@ -79,6 +81,7 @@ class NewSupplementView: UIView {
     let serving = FieldComponent()
     let dosage = FieldComponent()
     let time = FieldComponent()
+    let datePicker = UIDatePicker()
     let button = UIButton()
     
     convenience init() {
@@ -98,19 +101,23 @@ class NewSupplementView: UIView {
         )
         
         // Layout
-        let margin: CGFloat = 20
+        let margin: CGFloat = 21
         background.fillContainer()
-        card.top(32).bottom(32).fillHorizontally(m: 10)
+        card.top(32).fillHorizontally(m: 10)
         image.size(56).top(69).left(32)
-        alignHorizontally(image-20-name)
-        type.Top == name.Bottom + margin
-        type.left(40)
+        image-20-name
+        name.Top == image.Top
+        
+        type.Top == image.Bottom + (margin + 10)
+        type.left(41)
         serving.Top == type.Bottom + margin
         dosage.Top == serving.Bottom + margin
         time.Top == dosage.Bottom + margin
         align(lefts: type,serving, dosage, time)
-        button.Right == card.Right - 10
-        button.Bottom == card.Bottom
+        
+        button.Top == time.Bottom + 3
+        button.Right == card.Right - 4
+        button.Bottom == card.Bottom + 4
         
         // Style
         card.style { v in
@@ -124,7 +131,6 @@ class NewSupplementView: UIView {
         serving.field.keyboardType = .numberPad
         button.setImage(#imageLiteral(resourceName: "checkButton"), for: .normal)
         
-        let datePicker = UIDatePicker()
         datePicker.style { p in
             p.datePickerMode = .time
             p.minuteInterval = 15
@@ -136,16 +142,12 @@ class NewSupplementView: UIView {
         name.field.placeholder = "Vitamin D"
         type.title.text = "Type"
         serving.title.text = "Serving"
-        serving.field.placeholder = "2"
+        serving.field.placeholder = "1,2,3..."
         dosage.title.text = "Dosage"
-        dosage.field.placeholder = "5 000 UI"
+        dosage.field.placeholder = "600 UI, 3mg, 15ml..."
         time.title.text = "Time"
         time.field.placeholder = "10:30 am"
         
-        // Test Texts
-        name.field.text = "Vitamin D"
-        serving.field.text = "2"
-        dosage.field.text = "5 000 UI"
-        time.field.text = "10:30 am"
+        background.isHidden = true
     }
 }

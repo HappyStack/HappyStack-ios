@@ -10,6 +10,7 @@ import UIKit
 
 protocol ItemVCDelegate {
     func itemVCDidSaveOrDeleteItem()
+    func itemVCDidTapCancel()
 }
 
 class ItemVC: UIViewController {
@@ -45,16 +46,16 @@ class ItemVC: UIViewController {
         
         title = isNewItem ? "New Item" : item.name
         
-        if isNewItem {
+//        if isNewItem {
             navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel,
                                                                target: self,
                                                                action: #selector(close))
-            v.nameField.becomeFirstResponder()
-        } else {
+//            v.nameField.becomeFirstResponder()
+//        } else {
             v.nameField.text = item.name
             v.dosageField.text = item.dosage
             v.datePicker.date = item.time
-        }
+//        }
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save,
                                                             target: self,
@@ -109,11 +110,7 @@ class ItemVC: UIViewController {
     
     @objc
     func close() {
-        if isNewItem {
-            dismiss(animated: true, completion: nil)
-        } else {
-            navigationController?.popViewController(animated: true)
-        }
+        delegate?.itemVCDidTapCancel()
     }
     
 }

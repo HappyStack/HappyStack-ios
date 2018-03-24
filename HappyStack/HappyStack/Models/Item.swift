@@ -19,8 +19,8 @@ struct Item: Codable {
     
     let identifier: String
     let name: String
-    let dosage: String
-    let time: Date
+    var dosage: String
+    var time: Date
     var serving = Serving.pill
     var servingSize: Int = 1
     let isChecked: Bool
