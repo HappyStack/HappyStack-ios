@@ -9,6 +9,46 @@
 import UIKit
 import Stevia
 
+extension UIColor {
+    class var hsGreen: UIColor { return UIColor(red: 126/255.0, green: 184/255.0, blue: 114/255.0, alpha: 1) }
+}
+
+class MyView: UIView {
+    
+    let button = UIButton()
+    
+    convenience init() {
+        self.init(frame: CGRect.zero)
+        
+        // View Hierarchy
+        button.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(button)
+        
+        // Layout
+        button.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        button.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        
+        // Style
+        button.setTitle("Tap Me", for: .normal)
+    }
+}
+
+class MyViewController: UIViewController {
+    
+    let v = MyView()
+    override func loadView() { view = v }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        v.button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+    }
+    
+    @objc
+    func didTapButton() {
+        print("Button Tapped!")
+    }
+}
+
 class StackView: UIView {
     
     let tableView = UITableView(frame: .zero, style: .grouped)
@@ -151,13 +191,73 @@ class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableV
         return 3
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UIView()
+        header.backgroundColor = .clear
+
+        let round = UIView()
+        header.sv(round)
+        |round|.height(30).top(0)
+        round.layer.cornerRadius = 8
+        round.backgroundColor = .white
+        
+        let square = UIView()
+        header.sv(square)
+        |square|.height(40).bottom(0)
+        square.backgroundColor = .white
+        
+        let label = UILabel()
+        header.sv(label)
+        
+        let count = UILabel()
+        header.sv(count)
+        label.centerVertically()
+        align(horizontally: |-20-label-(>=8)-count-20-|)
+        
+        let progress = UIProgressView()
+        header.sv(progress)
+        |progress|.bottom(0)
+        progress.height(2)
+        progress.progressTintColor = .hsGreen
+        progress.trackTintColor = UIColor.black.withAlphaComponent(0.1)
+
+        
+        var array = [Item]()
         switch section {
-        case 0: return "This morning"
-        case 1: return "This afternoon"
-        case 2: return "This evening"
-        default: return ""
+        case 0:
+            label.text = "This morning"
+            array = morningItems
+        case 1:
+            label.text = "This afternoon"
+            array = dayItems
+        case 2:
+            label.text = "This evening"
+            array = eveningItems
+        default: ()
         }
+        
+        let totalCount = array.count
+        let completedCount = array.filter { $0.isChecked }.count
+        count.text = "\(completedCount) of \(totalCount) supplements".uppercased()
+
+        
+        label.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        count.font = UIFont.systemFont(ofSize: 10, weight: .semibold)
+        count.textColor = UIColor(red: 153/255.0, green: 153/255.0, blue: 153/255.0, alpha: 1)
+        
+        if totalCount > 0 {
+            let completedRatio = Float(completedCount) / Float(totalCount)
+            UIView.animate(withDuration: 1, animations: {
+                progress.progress = completedRatio
+            })
+        }
+        
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
     }
     
     func item(for indexPath: IndexPath) -> Item {
@@ -252,7 +352,7 @@ class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableV
 
             
         }
-        action.backgroundColor = .green
+        action.backgroundColor = .hsGreen
         return UISwipeActionsConfiguration(actions: [action])
     }
 }

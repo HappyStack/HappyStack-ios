@@ -14,10 +14,11 @@ public class ItemCell: UITableViewCell {
     let visual = UIImageView()
     let name = UILabel()
     let dosage = UILabel()
-    let time = UILabel()
+    let hour = UILabel()
+    let minutes = UILabel()
     let servingType = UIImageView()
     let servingSize = UILabel()
-    let takenIndicator = UIView()
+    let takenIndicator = UIImageView(image: #imageLiteral(resourceName: "check"))
     let separator = UIView()
     
     static let reuseIdentifier = "ItemCell"
@@ -29,7 +30,8 @@ public class ItemCell: UITableViewCell {
             visual,
             name,
             dosage,
-            time,
+            hour,
+            minutes,
             servingType,
             servingSize,
             takenIndicator,
@@ -44,12 +46,19 @@ public class ItemCell: UITableViewCell {
         visual-10-dosage
         dosage.Top == name.Bottom //+ 9
         
-        |takenIndicator.width(5).fillVertically()
+        takenIndicator.centerVertically()-23-|
         
         servingType.size(18)
         servingSize.centerVertically()
         align(horizontally: servingType-4-servingSize-26-|)
-            
+        
+        layout(
+            20,
+            |-15-hour.width(25),
+            -6,
+            |-15-minutes.width(25)
+        )
+//        hour.backgroundColor = .red
         
         servingType.image = #imageLiteral(resourceName: "drop")
         servingType.contentMode = .scaleAspectFit
@@ -59,6 +68,7 @@ public class ItemCell: UITableViewCell {
         separator.backgroundColor = UIColor(red: 229/255.0, green: 229/255.0, blue: 229/255.0, alpha: 1)
         
         visual.style { i in
+            i.contentMode = .center
             i.backgroundColor = UIColor(red: 229/255.0, green: 229/255.0, blue: 229/255.0, alpha: 1)
             i.layer.cornerRadius = 4
         }
@@ -72,10 +82,17 @@ public class ItemCell: UITableViewCell {
         servingSize.style { l in
             l.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         }
-        time.style { l in
-            l.textAlignment = .right
+        hour.style { l in
+            l.textAlignment = .center
             l.textColor = .gray
+            l.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+            l.textColor = UIColor(red: 207/255.0, green: 207/255.0, blue: 207/255.0, alpha: 1)
         }
-        takenIndicator.backgroundColor = .green
+        minutes.style { l in
+            l.textAlignment = .center
+            l.textColor = .gray
+            l.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+            l.textColor = UIColor(red: 207/255.0, green: 207/255.0, blue: 207/255.0, alpha: 1)
+        }
     }
 }

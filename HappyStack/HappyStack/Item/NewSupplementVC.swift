@@ -54,6 +54,8 @@ class NewSupplementVC: UIViewController {
         v.serving.field.text = ""
         v.dosage.field.text = ""
         v.time.field.text = ""
+        
+        view.endEditing(true)
     }
         
 //        close()
