@@ -73,7 +73,8 @@ public class ItemCell: UITableViewCell {
             i.layer.cornerRadius = 4
         }
         name.style { l in
-           l.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+            l.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+            l.textColor = .themeDarkColor
         }
         dosage.style { l in
             l.font = UIFont.systemFont(ofSize: 14, weight: .medium)
@@ -86,13 +87,13 @@ public class ItemCell: UITableViewCell {
             l.textAlignment = .center
             l.textColor = .gray
             l.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-            l.textColor = UIColor(red: 207/255.0, green: 207/255.0, blue: 207/255.0, alpha: 1)
+            l.textColor = .themeMainColor
         }
         minutes.style { l in
             l.textAlignment = .center
             l.textColor = .gray
             l.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-            l.textColor = UIColor(red: 207/255.0, green: 207/255.0, blue: 207/255.0, alpha: 1)
+            l.textColor = .themeMainColor
         }
     }
 }

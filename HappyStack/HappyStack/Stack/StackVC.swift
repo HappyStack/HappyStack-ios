@@ -9,9 +9,6 @@
 import UIKit
 import Stevia
 
-extension UIColor {
-    class var hsGreen: UIColor { return UIColor(red: 126/255.0, green: 184/255.0, blue: 114/255.0, alpha: 1) }
-}
 
 class MyView: UIView {
     
@@ -51,16 +48,26 @@ class MyViewController: UIViewController {
 
 class StackView: UIView {
     
+    let background = UIImageView(image: #imageLiteral(resourceName: "BG"))
     let tableView = UITableView(frame: .zero, style: .grouped)
+    let iButton = UIButton(type: UIButtonType.infoLight)
     
     convenience init() {
         self.init(frame: CGRect.zero)
         
         sv(
-            tableView
+            background,
+            tableView,
+            iButton
         )
         
+        background.fillContainer()
         tableView.fillHorizontally(m: 10).fillVertically()
+        
+        iButton.left(20).bottom(20)
+        
+        
+        iButton.tintColor = .white
         
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
@@ -94,7 +101,7 @@ class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableV
     let v = StackView()
     override func loadView() { view = v }
     
-    var rc = UIRefreshControl()
+//    var rc = UIRefreshControl()
     
     var morningItems:[Item] { return items.filter { item in noon.compare(item.time) == .orderedDescending } }
     var dayItems:[Item] { return items.filter { i in
@@ -124,16 +131,40 @@ class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableV
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        rc.addTarget(self, action: #selector(StackVC.refresh), for: .valueChanged)
-        v.tableView.addSubview(rc)
+//        rc.addTarget(self, action: #selector(StackVC.refresh), for: .valueChanged)
+//        v.tableView.addSubview(rc)
         v.tableView.rowHeight = 78
 //        v.tableView.estimatedRowHeight = 200
+        
+        
+        let addButton = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 50))
+        addButton.setTitle("Add a supplement", for: .normal)
+        addButton.addTarget(self, action: #selector(addSupplement), for: .touchUpInside)
+        
+        v.tableView.tableHeaderView = addButton
+        
+        v.iButton.addTarget(self, action: #selector(infoTapped), for: .touchUpInside)
+    }
+    
+    @objc
+    func addSupplement() {
+        present(NewSupplementVC(), animated: true, completion: nil)
+    }
+    
+    @objc
+    func infoTapped() {
+        let moreVC = MoreVC()
+        moreVC.didClose = { [unowned self] in
+            self.dismiss(animated: true, completion: nil)
+        }
+        let navVC = UINavigationController(rootViewController: moreVC)
+        present(navVC, animated: true, completion: nil)
     }
     
     @objc
     func refresh() {
         stack.fetch().then {
-            self.rc.endRefreshing()
+//            self.rc.endRefreshing()
             
             self.stack.items.sort(by:{ (a, b) -> Bool in
                 
@@ -217,10 +248,11 @@ class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableV
         
         let progress = UIProgressView()
         header.sv(progress)
-        |progress|.bottom(0)
+        |-20-progress.bottom(0)-20-|
         progress.height(2)
-        progress.progressTintColor = .hsGreen
-        progress.trackTintColor = UIColor.black.withAlphaComponent(0.1)
+        progress.layer.cornerRadius = 1
+        progress.progressTintColor = .themeMainColor
+        progress.trackTintColor = UIColor.themeMainColor.withAlphaComponent(0.2)
 
         
         var array = [Item]()
@@ -243,8 +275,9 @@ class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableV
 
         
         label.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        label.textColor = .themeDarkColor
         count.font = UIFont.systemFont(ofSize: 10, weight: .semibold)
-        count.textColor = UIColor(red: 153/255.0, green: 153/255.0, blue: 153/255.0, alpha: 1)
+        count.textColor = .themeMainColor
         
         if totalCount > 0 {
             let completedRatio = Float(completedCount) / Float(totalCount)
@@ -278,6 +311,7 @@ class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableV
             return UITableViewCell()
         }
         cell.render(with: item)
+        cell.separator.isHidden = indexPath.row == 0
         return cell
     }
     
@@ -352,7 +386,7 @@ class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableV
 
             
         }
-        action.backgroundColor = .hsGreen
+        action.backgroundColor = .themeMainColor
         return UISwipeActionsConfiguration(actions: [action])
     }
 }

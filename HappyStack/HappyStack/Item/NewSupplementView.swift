@@ -147,7 +147,5 @@ class NewSupplementView: UIView {
         dosage.field.placeholder = "600 UI, 3mg, 15ml..."
         time.title.text = "Time"
         time.field.placeholder = "10:30 am"
-        
-        background.isHidden = true
     }
 }

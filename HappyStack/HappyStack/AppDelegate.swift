@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                            isChecked: true)
 //        whey.serving = .scoop
         
-       window?.rootViewController = MainVC()
+        window?.rootViewController = StackVC(stack: User.current!.stack)
         
         window?.makeKeyAndVisible()
         return true

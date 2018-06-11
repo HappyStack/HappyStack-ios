@@ -12,9 +12,21 @@ import MessageUI
 
 class MoreVC : UITableViewController {
     
+    var didClose = {}
+    
     convenience init() {
         self.init(style: UITableViewStyle.grouped)
         title = "More"
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
+    }
+    
+    @objc
+    func cancel() {
+        didClose()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

@@ -15,12 +15,7 @@ class NewSupplementVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        on("INJECTION_BUNDLE_NOTIFICATION") {
-            self.view = NewSupplementView()
-        }
-        
-//        v.name.field.becomeFirstResponder()
+    
         v.button.addTarget(self, action: #selector(addSupplement), for: .touchUpInside)
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
         view.addGestureRecognizer(tap)
