@@ -10,6 +10,8 @@ import UIKit
 
 class NewSupplementVC: UIViewController {
     
+    var didCancel = {}
+    
     var v = NewSupplementView()
     override func loadView() { view = v }
     
@@ -17,6 +19,7 @@ class NewSupplementVC: UIViewController {
         super.viewDidLoad()
     
         v.button.addTarget(self, action: #selector(addSupplement), for: .touchUpInside)
+        v.cancelButton.addTarget(self, action: #selector(didTapCancel), for: .touchUpInside)
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
         view.addGestureRecognizer(tap)
     }
@@ -24,6 +27,11 @@ class NewSupplementVC: UIViewController {
     @objc
     func tapped() {
         view.endEditing(true)
+    }
+    
+    @objc
+    func didTapCancel() {
+        didCancel()
     }
     
     @objc

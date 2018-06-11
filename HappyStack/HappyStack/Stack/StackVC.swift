@@ -101,8 +101,6 @@ class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableV
     let v = StackView()
     override func loadView() { view = v }
     
-//    var rc = UIRefreshControl()
-    
     var morningItems:[Item] { return items.filter { item in noon.compare(item.time) == .orderedDescending } }
     var dayItems:[Item] { return items.filter { i in
         !morningItems.contains(where: { $0.identifier == i.identifier })
@@ -131,11 +129,8 @@ class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableV
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        rc.addTarget(self, action: #selector(StackVC.refresh), for: .valueChanged)
-//        v.tableView.addSubview(rc)
-        v.tableView.rowHeight = 78
-//        v.tableView.estimatedRowHeight = 200
-        
+
+        v.tableView.rowHeight = 78        
         
         let addButton = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 50))
         addButton.setTitle("Add a supplement", for: .normal)
@@ -148,7 +143,11 @@ class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableV
     
     @objc
     func addSupplement() {
-        present(NewSupplementVC(), animated: true, completion: nil)
+        let vc = NewSupplementVC()
+        vc.didCancel = { [unowned self] in
+            self.dismiss(animated: true, completion: nil)
+        }
+        present(vc, animated: true, completion: nil)
     }
     
     @objc
@@ -164,7 +163,6 @@ class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableV
     @objc
     func refresh() {
         stack.fetch().then {
-//            self.rc.endRefreshing()
             
             self.stack.items.sort(by:{ (a, b) -> Bool in
                 

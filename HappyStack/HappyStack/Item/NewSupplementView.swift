@@ -83,6 +83,7 @@ class NewSupplementView: UIView {
     let time = FieldComponent()
     let datePicker = UIDatePicker()
     let button = UIButton()
+    let cancelButton = UIButton()
     
     convenience init() {
         self.init(frame: CGRect.zero)
@@ -97,7 +98,8 @@ class NewSupplementView: UIView {
             serving,
             dosage,
             time,
-            button
+            button,
+            cancelButton
         )
         
         // Layout
@@ -115,9 +117,13 @@ class NewSupplementView: UIView {
         time.Top == dosage.Bottom + margin
         align(lefts: type,serving, dosage, time)
         
-        button.Top == time.Bottom + 3
-        button.Right == card.Right - 4
-        button.Bottom == card.Bottom + 4
+        button.Top == time.Bottom + 40
+        button.Left == card.Left + margin
+        button.Bottom == card.Bottom - 30
+        button.height(42)
+        
+        align(horizontally: button-cancelButton)
+
         
         // Style
         card.style { v in
@@ -129,13 +135,30 @@ class NewSupplementView: UIView {
             i.layer.cornerRadius = 4
         }
         serving.field.keyboardType = .numberPad
-        button.setImage(#imageLiteral(resourceName: "checkButton"), for: .normal)
+        
         
         datePicker.style { p in
             p.datePickerMode = .time
             p.minuteInterval = 15
         }
         time.field.inputView = datePicker
+        
+        button.style { b in
+            b.setTitleColor(.white, for: .normal)
+            b.setBackgroundColor(.themeMainColor, forState: .normal)
+            b.contentEdgeInsets = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
+            b.layer.cornerRadius = 21
+            b.clipsToBounds = true
+            b.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+        }
+        cancelButton.style { b in
+            b.setTitleColor(UIColor.themeMainColor, for: .normal)
+//            b.setBackgroundColor(.themeMainColor, forState: .normal)
+//            b.contentEdgeInsets = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
+//            b.layer.cornerRadius = 21
+//            b.clipsToBounds = true
+            b.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+        }
         
         // Wordings
         name.title.text = "Title"
@@ -147,5 +170,7 @@ class NewSupplementView: UIView {
         dosage.field.placeholder = "600 UI, 3mg, 15ml..."
         time.title.text = "Time"
         time.field.placeholder = "10:30 am"
+        button.setTitle("Add my supplement".uppercased(), for: .normal)
+        cancelButton.setTitle("Cancel", for: .normal)
     }
 }
