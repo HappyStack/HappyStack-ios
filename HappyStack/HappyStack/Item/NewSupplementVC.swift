@@ -11,6 +11,7 @@ import UIKit
 class NewSupplementVC: UIViewController {
     
     var didCancel = {}
+    var didAddSupplement = {}
     
     var v = NewSupplementView()
     override func loadView() { view = v }
@@ -59,6 +60,7 @@ class NewSupplementVC: UIViewController {
         v.time.field.text = ""
         
         view.endEditing(true)
+        didAddSupplement()
     }
         
 //        close()

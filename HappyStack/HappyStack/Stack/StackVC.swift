@@ -153,6 +153,10 @@ class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableV
         vc.didCancel = { [unowned self] in
             self.dismiss(animated: true, completion: nil)
         }
+        vc.didAddSupplement = { [unowned self] in
+            self.dismiss(animated: true, completion: nil)
+            self.refresh()
+        }
         present(vc, animated: true, completion: nil)
     }
     
