@@ -62,7 +62,7 @@ class StackView: UIView {
         )
         
         background.fillContainer()
-        tableView.fillHorizontally(m: 10).fillVertically()
+        tableView.fillHorizontally(m: 15).fillVertically()
         
         iButton.left(20).bottom(20)
         
@@ -71,6 +71,9 @@ class StackView: UIView {
         
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
+        
+        
         
     }
 }
@@ -130,7 +133,7 @@ class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        v.tableView.rowHeight = 78        
+        v.tableView.rowHeight = 78
         
         let addButton = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 50))
         addButton.setTitle("Add a supplement", for: .normal)
@@ -139,6 +142,9 @@ class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableV
         v.tableView.tableHeaderView = addButton
         
         v.iButton.addTarget(self, action: #selector(infoTapped), for: .touchUpInside)
+        
+        
+        v.iButton.isHidden = true
     }
     
     @objc
@@ -287,8 +293,25 @@ class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableV
         return header
     }
     
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footer = UIView()
+        footer.backgroundColor = .clear
+        
+        let rounded = UIView()
+        footer.sv(rounded)
+        |rounded.top(-8).height(16)|
+        rounded.backgroundColor = .white
+        rounded.layer.cornerRadius = 8
+        
+        return footer
+    }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 28
     }
     
     func item(for indexPath: IndexPath) -> Item {
@@ -327,8 +350,6 @@ class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableV
         
         let navVC = UINavigationController(rootViewController: itemVC)
         present(navVC, animated: true, completion: nil)
-        
-//        navigationController?.pushViewController(itemVC, animated: true)
     }
     
     @objc
@@ -355,15 +376,6 @@ class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let selectedItem = item(for: indexPath)
-        let delete = UIContextualAction(style: .destructive, title: "Delete") { action, view, block in
-            selectedItem.deleteInBackground()
-            block(true)
-        }
-        return UISwipeActionsConfiguration(actions: [delete])
-    }
-    
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let selectedItem = item(for: indexPath)
         let action = UIContextualAction(style: .normal, title: selectedItem.isChecked ? "Untake" : "Take") { action, view, block in
             let checked = !selectedItem.isChecked
             let editedItem = Item(identifier: selectedItem.identifier,
@@ -375,16 +387,10 @@ class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableV
             block(true)
             
             self.refresh()
-//            if let index = self.stack.items.index(where: { $0.identifier != editedItem.identifier }) {
-//                self.stack.items.remove(at: index)
-//                self.stack.items.insert(editedItem, at: index)
-////                tableView.reloadRows(at: [indexPath], with: .none)
-//            }
-//            tableView.reloadData()
-
-            
         }
-        action.backgroundColor = .themeMainColor
+        let img = #imageLiteral(resourceName: "check")
+        action.image = img
+        action.backgroundColor = UIColor.themeMainColor
         return UISwipeActionsConfiguration(actions: [action])
     }
 }
