@@ -283,7 +283,7 @@ class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableV
         
         let totalCount = array.count
         let completedCount = array.filter { $0.isChecked }.count
-        count.text = "\(completedCount) of \(totalCount) supplements".uppercased()
+        count.text = "\(completedCount) of \(totalCount) supplement\(totalCount > 0 ? "s" : "")".uppercased()
 
         
         label.font = UIFont(name: "Lato-Bold", size: 15)
