@@ -9,43 +9,6 @@
 import UIKit
 import Stevia
 
-
-class MyView: UIView {
-    
-    let button = UIButton()
-    
-    convenience init() {
-        self.init(frame: CGRect.zero)
-        
-        // View Hierarchy
-        button.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(button)
-        
-        // Layout
-        button.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        button.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        
-        // Style
-        button.setTitle("Tap Me", for: .normal)
-    }
-}
-
-class MyViewController: UIViewController {
-    
-    let v = MyView()
-    override func loadView() { view = v }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        v.button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
-    }
-    
-    @objc
-    func didTapButton() {
-        print("Button Tapped!")
-    }
-}
-
 class StackView: UIView {
     
     let background = UIImageView(image: #imageLiteral(resourceName: "BG"))
