@@ -357,6 +357,9 @@ class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableV
             editedItem.saveInBackground()
             block(true)
             
+            let hapticFeedback = UIImpactFeedbackGenerator(style: .medium)
+            hapticFeedback.impactOccurred()
+            
             self.refresh()
         }
         let img = #imageLiteral(resourceName: "check")
