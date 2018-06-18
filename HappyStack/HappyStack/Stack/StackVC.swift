@@ -321,6 +321,8 @@ class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableV
         
         let navVC = UINavigationController(rootViewController: itemVC)
         present(navVC, animated: true, completion: nil)
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     @objc
