@@ -80,6 +80,10 @@ class StackView: UIView {
 
 class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableViewDelegate {
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     let stack: Stack
     var items: [Item] { return stack.items }
     

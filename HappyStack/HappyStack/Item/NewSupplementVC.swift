@@ -10,6 +10,10 @@ import UIKit
 
 class NewSupplementVC: UIViewController {
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     var didCancel = {}
     var didAddSupplement = {}
     
