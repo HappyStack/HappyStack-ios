@@ -73,15 +73,16 @@ public class ItemCell: UITableViewCell {
             i.layer.cornerRadius = 4
         }
         name.style { l in
-            l.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+            l.font = UIFont(name: "Lato-Bold", size: 15)
             l.textColor = .themeDarkColor
         }
         dosage.style { l in
-            l.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-            l.textColor = UIColor(red: 153/255.0, green: 153/255.0, blue: 153/255.0, alpha: 1)
+            l.font = UIFont(name: "Lato-Semibold", size: 14)
+            l.textColor = UIColor(red: 154/255.0, green: 173/255.0, blue: 182/255.0, alpha: 1)
         }
         servingSize.style { l in
-            l.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+            l.font = UIFont(name: "Lato-Bold", size: 16)
+            l.textColor = .themeDarkColor
         }
         hour.style { l in
             l.textAlignment = .center

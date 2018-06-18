@@ -138,7 +138,7 @@ class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableV
         let addButton = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 50))
         addButton.setTitle("Add a supplement", for: .normal)
         addButton.addTarget(self, action: #selector(addSupplement), for: .touchUpInside)
-        
+        addButton.titleLabel?.font = UIFont(name: "Lato-Bold", size: 15)
         v.tableView.tableHeaderView = addButton
         
         v.iButton.addTarget(self, action: #selector(infoTapped), for: .touchUpInside)
@@ -282,9 +282,9 @@ class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableV
         count.text = "\(completedCount) of \(totalCount) supplements".uppercased()
 
         
-        label.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        label.font = UIFont(name: "Lato-Bold", size: 15)
         label.textColor = .themeDarkColor
-        count.font = UIFont.systemFont(ofSize: 10, weight: .semibold)
+        count.font = UIFont(name: "Lato-Bold", size: 10)
         count.textColor = .themeMainColor
         
         if totalCount > 0 {

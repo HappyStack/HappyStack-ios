@@ -28,10 +28,13 @@ class FieldComponent: UIView {
         
         stack.axis = .vertical
         title.style { l in
-            l.font = UIFont.systemFont(ofSize: 13.5, weight: .semibold)
-            l.textColor = UIColor(red: 153/255.0, green: 153/255.0, blue: 153/255.0, alpha: 1)
+            l.font = UIFont(name: "Lato-Medium", size: 14)
+            l.textColor = .themeMainColor
         }
-        field.font = UIFont.systemFont(ofSize: 35, weight: .light)
+        field.style { f in
+            f.font = UIFont(name: "Lato-Light", size: 36)
+            f.textColor = .themeDarkColor
+        }
     }
 }
 
@@ -59,8 +62,8 @@ class ServingTypeComponent: UIView {
         images.forEach { $0.size(50) }
         
         title.style { l in
-            l.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-            l.textColor = UIColor(red: 153/255.0, green: 153/255.0, blue: 153/255.0, alpha: 1)
+            l.font = UIFont(name: "Lato-Medium", size: 14)
+            l.textColor = .themeMainColor
         }
         horizontalStack.layoutMargins.left = -11
         horizontalStack.isLayoutMarginsRelativeArrangement = true
@@ -149,15 +152,11 @@ class NewSupplementView: UIView {
             b.contentEdgeInsets = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
             b.layer.cornerRadius = 21
             b.clipsToBounds = true
-            b.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+            b.titleLabel?.font = UIFont(name: "Lato-Bold", size: 12)
         }
         cancelButton.style { b in
             b.setTitleColor(UIColor.themeMainColor, for: .normal)
-//            b.setBackgroundColor(.themeMainColor, forState: .normal)
-//            b.contentEdgeInsets = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 24)
-//            b.layer.cornerRadius = 21
-//            b.clipsToBounds = true
-            b.titleLabel?.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+            b.titleLabel?.font = UIFont(name: "Lato-Semibold", size: 15)
         }
         
         // Wordings
