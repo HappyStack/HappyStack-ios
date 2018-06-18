@@ -108,8 +108,12 @@ class NewSupplementView: UIView {
         // Layout
         let margin: CGFloat = 21
         background.fillContainer()
-        card.top(32).fillHorizontally(m: 10)
-        image.size(56).top(69).left(32)
+        
+        card.Top == safeAreaLayoutGuide.Top + 32
+        card.fillHorizontally(m: 10)
+        
+        image.Top == card.Top + 37
+        image.size(56).left(32)
         image-20-name
         name.Top == image.Top
         
