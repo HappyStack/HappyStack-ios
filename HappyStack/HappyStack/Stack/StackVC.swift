@@ -69,13 +69,19 @@ class StackVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     let v = StackView()
     override func loadView() { view = v }
     
-    var morningItems:[Item] { return items.filter { item in noon.compare(item.time) == .orderedDescending } }
+    var morningItems:[Item] {
+        return items.filter { noon.compare($0.time) == .orderedDescending }
+                    .sorted(by: { $0.name < $1.name })
+    }
     var dayItems:[Item] { return items.filter { i in
         !morningItems.contains(where: { $0.identifier == i.identifier })
             && !eveningItems.contains(where: { $0.identifier == i.identifier })
-        }
+        }.sorted(by: { $0.name < $1.name })
     }
-    var eveningItems:[Item] { return items.filter { item in sixPm.compare(item.time) == .orderedAscending } }
+    var eveningItems:[Item] {
+        return items.filter { sixPm.compare($0.time) == .orderedAscending }
+                    .sorted(by: { $0.name < $1.name })
+    }
     
     var noon:Date = {
         var d = Date()
