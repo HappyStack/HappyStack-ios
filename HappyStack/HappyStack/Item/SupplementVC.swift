@@ -25,7 +25,7 @@ class SupplementVC: UIViewController {
     override func loadView() { view = v }
 
     convenience init() {
-        self.init(item: Item(name: "Unknown"))
+        self.init(item: Item(name: ""))
         isNewItem = true
     }
     
