@@ -183,7 +183,6 @@ class SupplementView: UIView {
         dosage.field.placeholder = "600 UI, 3mg, 15ml..."
         time.title.text = "Time"
         time.field.placeholder = "10:30 am"
-        button.setTitle("Add my supplement".uppercased(), for: .normal)
         cancelButton.setTitle("Cancel", for: .normal)
         deleteButton.setTitle("Delete", for: .normal)
         
