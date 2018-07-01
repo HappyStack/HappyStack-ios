@@ -65,6 +65,8 @@ public class ItemCell: UITableViewCell {
         
         |-16-separator.height(1)|
         
+        name-(>=8)-servingType
+        
         separator.backgroundColor = UIColor(red: 229/255.0, green: 229/255.0, blue: 229/255.0, alpha: 1)
         
         visual.style { i in
