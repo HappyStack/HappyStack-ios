@@ -116,7 +116,7 @@ class SupplementView: UIView {
         
         image.Top == card.Top + 37
         image.size(56).left(32)
-        image-20-name
+        image-20-name-20-|
         name.Top == image.Top
         
         type.Top == image.Bottom + (margin + 10)
@@ -186,5 +186,8 @@ class SupplementView: UIView {
         button.setTitle("Add my supplement".uppercased(), for: .normal)
         cancelButton.setTitle("Cancel", for: .normal)
         deleteButton.setTitle("Delete", for: .normal)
+        
+        name.field.adjustsFontSizeToFitWidth = true
+        name.field.minimumFontSize = 16
     }
 }
