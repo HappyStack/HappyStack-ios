@@ -41,7 +41,7 @@ class StackView: UIView {
     }
 }
 
-class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableViewDelegate {
+class StackVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -59,8 +59,6 @@ class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableV
         self.stack = stack
         super.init(nibName: nil, bundle: nil)
         title = "My Stack"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "...", style: .plain, target: self, action: #selector(showMore))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(addNutrient))
         v.tableView.register(ItemCell.self, forCellReuseIdentifier: ItemCell.reuseIdentifier)
         v.tableView.dataSource = self
         v.tableView.delegate = self
@@ -116,7 +114,7 @@ class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableV
     
     @objc
     func addSupplement() {
-        let vc = NewSupplementVC()
+        let vc = SupplementVC()
         vc.didCancel = { [unowned self] in
             self.dismiss(animated: true, completion: nil)
         }
@@ -316,30 +314,21 @@ class StackVC: UIViewController, ItemVCDelegate, UITableViewDataSource, UITableV
         default:()
         }
         
-        let itemVC = ItemVC(item: item)
-        itemVC.delegate = self
-        
-        let navVC = UINavigationController(rootViewController: itemVC)
-        present(navVC, animated: true, completion: nil)
-        
+        let vc = SupplementVC(item: item)
+        let dismissal = { [unowned self] in
+            self.dismiss(animated: true, completion: nil)
+        }
+        vc.didCancel = dismissal
+        vc.didDelete = {
+            dismissal()
+            self.refresh()
+        }
+        vc.didAddSupplement = { [unowned self] in
+            self.dismiss(animated: true, completion: nil)
+            self.refresh()
+        }
+        present(vc, animated: true, completion: nil)
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    @objc
-    func addNutrient() {
-        let itemVC = ItemVC()
-        itemVC.delegate = self
-        let navVC = UINavigationController(rootViewController: itemVC)
-        present(navVC, animated: true, completion: nil)
-    }
-    
-    func itemVCDidSaveOrDeleteItem() {
-        dismiss(animated: true, completion: nil)
-        refresh()
-    }
-    
-    func itemVCDidTapCancel() {
-        dismiss(animated: true, completion: nil)
     }
     
     @objc

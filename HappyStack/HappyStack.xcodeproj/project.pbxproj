@@ -10,7 +10,6 @@
 		990490E31FB48F2A00BE3E2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990490E21FB48F2A00BE3E2F /* AppDelegate.swift */; };
 		990490EA1FB48F2A00BE3E2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 990490E91FB48F2A00BE3E2F /* Assets.xcassets */; };
 		990490ED1FB48F2A00BE3E2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 990490EB1FB48F2A00BE3E2F /* LaunchScreen.storyboard */; };
-		99062D1720664B2C00E7029A /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99062D1620664B2C00E7029A /* MainVC.swift */; };
 		99117A891FB85EF8003CA447 /* then.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99117A881FB85EF8003CA447 /* then.framework */; };
 		9912FC581FB8514F0047E37D /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9912FC571FB8514F0047E37D /* LoginVC.swift */; };
 		9912FC5A1FB851560047E37D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9912FC591FB851560047E37D /* LoginView.swift */; };
@@ -33,8 +32,8 @@
 		99C372EF20CEC7990001BFF4 /* UIColor+HappyStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C372EE20CEC7990001BFF4 /* UIColor+HappyStack.swift */; };
 		99D53ED81FB58050000F286D /* MoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D53ED71FB58050000F286D /* MoreVC.swift */; };
 		99D53EDA1FB583A4000F286D /* StackVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D53ED91FB583A4000F286D /* StackVC.swift */; };
-		99DA0FF720603F8F003AC3B1 /* NewSupplementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DA0FF620603F8F003AC3B1 /* NewSupplementVC.swift */; };
-		99DA0FF920603FCD003AC3B1 /* NewSupplementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DA0FF820603FCD003AC3B1 /* NewSupplementView.swift */; };
+		99DA0FF720603F8F003AC3B1 /* SupplementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DA0FF620603F8F003AC3B1 /* SupplementVC.swift */; };
+		99DA0FF920603FCD003AC3B1 /* SupplementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DA0FF820603FCD003AC3B1 /* SupplementView.swift */; };
 		99DB856D1FB8598A00720109 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DB856C1FB8598A00720109 /* Keyboard.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,7 +43,6 @@
 		990490E91FB48F2A00BE3E2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		990490EC1FB48F2A00BE3E2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		990490EE1FB48F2A00BE3E2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		99062D1620664B2C00E7029A /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		99117A881FB85EF8003CA447 /* then.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = then.framework; path = Carthage/Build/iOS/then.framework; sourceTree = "<group>"; };
 		9912FC571FB8514F0047E37D /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		9912FC591FB851560047E37D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -67,8 +65,8 @@
 		99C372EE20CEC7990001BFF4 /* UIColor+HappyStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+HappyStack.swift"; sourceTree = "<group>"; };
 		99D53ED71FB58050000F286D /* MoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreVC.swift; sourceTree = "<group>"; };
 		99D53ED91FB583A4000F286D /* StackVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackVC.swift; sourceTree = "<group>"; };
-		99DA0FF620603F8F003AC3B1 /* NewSupplementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSupplementVC.swift; sourceTree = "<group>"; };
-		99DA0FF820603FCD003AC3B1 /* NewSupplementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSupplementView.swift; sourceTree = "<group>"; };
+		99DA0FF620603F8F003AC3B1 /* SupplementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementVC.swift; sourceTree = "<group>"; };
+		99DA0FF820603FCD003AC3B1 /* SupplementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementView.swift; sourceTree = "<group>"; };
 		99DB856C1FB8598A00720109 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,7 +110,6 @@
 				9912FC571FB8514F0047E37D /* LoginVC.swift */,
 				99DB856C1FB8598A00720109 /* Keyboard.swift */,
 				9912FC591FB851560047E37D /* LoginView.swift */,
-				99062D1620664B2C00E7029A /* MainVC.swift */,
 				99C372EE20CEC7990001BFF4 /* UIColor+HappyStack.swift */,
 				99A07D791FB5846800ABC308 /* Stack */,
 				99A07D851FB5875000ABC308 /* Item */,
@@ -188,8 +185,8 @@
 			children = (
 				99A07D831FB586CD00ABC308 /* ItemView.swift */,
 				99A07D861FB5876100ABC308 /* ItemVC.swift */,
-				99DA0FF620603F8F003AC3B1 /* NewSupplementVC.swift */,
-				99DA0FF820603FCD003AC3B1 /* NewSupplementView.swift */,
+				99DA0FF620603F8F003AC3B1 /* SupplementVC.swift */,
+				99DA0FF820603FCD003AC3B1 /* SupplementView.swift */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -291,7 +288,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				99A07D781FB5845700ABC308 /* ItemCell.swift in Sources */,
-				99062D1720664B2C00E7029A /* MainVC.swift in Sources */,
 				992AC2E71FB706F00054E711 /* LocalApi.swift in Sources */,
 				9912FC581FB8514F0047E37D /* LoginVC.swift in Sources */,
 				9912FC5A1FB851560047E37D /* LoginView.swift in Sources */,
@@ -303,8 +299,8 @@
 				992AC2E51FB705B30054E711 /* Api.swift in Sources */,
 				99A07D821FB5866E00ABC308 /* ItemCell+Item.swift in Sources */,
 				9912FC5D1FB852280047E37D /* User+Actions.swift in Sources */,
-				99DA0FF920603FCD003AC3B1 /* NewSupplementView.swift in Sources */,
-				99DA0FF720603F8F003AC3B1 /* NewSupplementVC.swift in Sources */,
+				99DA0FF920603FCD003AC3B1 /* SupplementView.swift in Sources */,
+				99DA0FF720603F8F003AC3B1 /* SupplementVC.swift in Sources */,
 				99A07D741FB5841500ABC308 /* User.swift in Sources */,
 				99C372EF20CEC7990001BFF4 /* UIColor+HappyStack.swift in Sources */,
 				99DB856D1FB8598A00720109 /* Keyboard.swift in Sources */,

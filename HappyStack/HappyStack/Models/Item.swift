@@ -18,7 +18,7 @@ enum Serving:String, Codable {
 struct Item: Codable {
     
     let identifier: String
-    let name: String
+    var name: String
     var dosage: String
     var time: Date
     var serving = Serving.pill
@@ -26,7 +26,7 @@ struct Item: Codable {
     let isChecked: Bool
     
     init(identifier: String = UUID().uuidString,
-         name: String,
+         name: String = "My supplement",
          dosage: String = "",
          time: Date = Date(),
          isChecked: Bool = false) {

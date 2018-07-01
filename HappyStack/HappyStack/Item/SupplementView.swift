@@ -1,5 +1,5 @@
 //
-//  NewSupplementView.swift
+//  SupplementView.swift
 //  HappyStack
 //
 //  Created by Sacha DSO on 19/03/2018.
@@ -74,7 +74,7 @@ class ServingTypeComponent: UIView {
     }
 }
 
-class NewSupplementView: UIView {
+class SupplementView: UIView {
     
     let background = UIImageView(image: #imageLiteral(resourceName: "BG"))
     let card = UIView()
@@ -87,6 +87,7 @@ class NewSupplementView: UIView {
     let datePicker = UIDatePicker()
     let button = UIButton()
     let cancelButton = UIButton()
+    let deleteButton = UIButton()
     
     convenience init() {
         self.init(frame: CGRect.zero)
@@ -102,7 +103,8 @@ class NewSupplementView: UIView {
             dosage,
             time,
             button,
-            cancelButton
+            cancelButton,
+            deleteButton
         )
         
         // Layout
@@ -130,6 +132,9 @@ class NewSupplementView: UIView {
         button.height(42)
         
         align(horizontally: button-cancelButton)
+        
+        deleteButton.centerHorizontally()
+        deleteButton.Top == card.Bottom + 20
 
         
         // Style
@@ -162,6 +167,11 @@ class NewSupplementView: UIView {
             b.setTitleColor(UIColor.themeMainColor, for: .normal)
             b.titleLabel?.font = UIFont(name: "Lato-Semibold", size: 15)
         }
+        deleteButton.style { b in
+            b.setTitleColor(UIColor.red, for: .normal)
+            b.titleLabel?.font = UIFont(name: "Lato-Semibold", size: 15)
+        }
+
         
         // Wordings
         name.title.text = "Title"
@@ -175,5 +185,6 @@ class NewSupplementView: UIView {
         time.field.placeholder = "10:30 am"
         button.setTitle("Add my supplement".uppercased(), for: .normal)
         cancelButton.setTitle("Cancel", for: .normal)
+        deleteButton.setTitle("Delete", for: .normal)
     }
 }
