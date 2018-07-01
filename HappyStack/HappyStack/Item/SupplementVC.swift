@@ -42,7 +42,6 @@ class SupplementVC: UIViewController {
         super.viewDidLoad()
         
         v.deleteButton.isHidden = isNewItem
-//        let wording = 
         v.button.setTitle((isNewItem ? "Add my supplement" : "Save").uppercased() , for: .normal)
         
         if let item = item {
