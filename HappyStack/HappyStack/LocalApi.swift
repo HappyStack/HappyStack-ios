@@ -43,6 +43,7 @@ class LocalApi: Api {
     
     func delete(item: Item) -> EmptyPromise {
         stack.items = stack.items.filter { $0.identifier != item.identifier }
+        saveToDisk()
         return Promise.resolve()
     }
     
