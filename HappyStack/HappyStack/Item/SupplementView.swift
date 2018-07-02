@@ -41,6 +41,9 @@ class FieldComponent: UIView {
 class ServingTypeComponent: UIView {
     
     let title = UILabel()
+    let button1 = UIButton()
+    let button2 = UIButton()
+    let button3 = UIButton()
     
     convenience init() {
         self.init(frame: CGRect.zero)
@@ -56,7 +59,16 @@ class ServingTypeComponent: UIView {
             horizontalStack
         ])
         
-        sv(stack)
+        sv(
+            stack,
+            button1,
+            button2,
+            button3
+        )
+        
+        button1.followEdges(image1)
+        button2.followEdges(image2)
+        button3.followEdges(image3)
         
         stack.fillContainer()
         images.forEach { $0.size(50) }
@@ -71,6 +83,12 @@ class ServingTypeComponent: UIView {
         stack.spacing = -1
         horizontalStack.spacing = 9
         images.forEach { $0.contentMode = .center }
+        
+        
+        button1.setBackgroundColor(UIColor.white.withAlphaComponent(0.5), forState: .highlighted)
+        button2.setBackgroundColor(UIColor.white.withAlphaComponent(0.5), forState: .highlighted)
+        button3.setBackgroundColor(UIColor.white.withAlphaComponent(0.5), forState: .highlighted)
+        
     }
 }
 

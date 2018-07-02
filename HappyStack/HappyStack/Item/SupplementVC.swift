@@ -38,8 +38,38 @@ class SupplementVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc
+    func servingTypePillTapped() {
+        item?.serving = .pill
+        v.type.button1.setBackgroundColor(UIColor.clear, forState: .normal)
+        v.type.button2.setBackgroundColor(UIColor.white.withAlphaComponent(0.5), forState: .normal)
+        v.type.button3.setBackgroundColor(UIColor.white.withAlphaComponent(0.5), forState: .normal)
+    }
+    
+    @objc
+    func servingTypeScoopTapped() {
+        item?.serving = .scoop
+        v.type.button1.setBackgroundColor(UIColor.white.withAlphaComponent(0.5), forState: .normal)
+        v.type.button2.setBackgroundColor(UIColor.clear, forState: .normal)
+        v.type.button3.setBackgroundColor(UIColor.white.withAlphaComponent(0.5), forState: .normal)
+    }
+    
+    @objc
+    func servingTypeDropTapped() {
+        item?.serving = .drop
+        v.type.button1.setBackgroundColor(UIColor.white.withAlphaComponent(0.5), forState: .normal)
+        v.type.button2.setBackgroundColor(UIColor.white.withAlphaComponent(0.5), forState: .normal)
+        v.type.button3.setBackgroundColor(UIColor.clear, forState: .normal)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        v.type.button1.addTarget(self, action: #selector(servingTypePillTapped), for: .touchUpInside)
+        v.type.button2.addTarget(self, action: #selector(servingTypeScoopTapped), for: .touchUpInside)
+        v.type.button3.addTarget(self, action: #selector(servingTypeDropTapped), for: .touchUpInside)
+        
+        
         
         v.deleteButton.isHidden = isNewItem
         v.button.setTitle((isNewItem ? "Add my supplement" : "Save").uppercased() , for: .normal)
@@ -67,6 +97,8 @@ class SupplementVC: UIViewController {
         let calendar = NSCalendar.current
         let ca = calendar.dateComponents( [.hour, .minute], from:  v.datePicker.date)
         let time = calendar.date(from: ca)!
+        
+        servingTypePillTapped()
     }
     
     @objc

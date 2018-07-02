@@ -28,8 +28,11 @@ extension ItemCell {
         servingType.isHidden = item.isChecked
         servingSize.isHidden = item.isChecked
         takenIndicator.isHidden = !item.isChecked
+        
+        servingType.image = item.serving.icon
     }
 }
+
 
 
 extension Serving {
@@ -39,6 +42,14 @@ extension Serving {
         case .pill: return #imageLiteral(resourceName: "pillBottle")
         case .scoop: return #imageLiteral(resourceName: "powderBottle")
         case .drop: return #imageLiteral(resourceName: "liquidBottle")
+        }
+    }
+    
+    var icon: UIImage {
+        switch self {
+        case .pill: return #imageLiteral(resourceName: "pill")
+        case .scoop: return #imageLiteral(resourceName: "scoop")
+        case .drop: return #imageLiteral(resourceName: "drop")
         }
     }
 }
