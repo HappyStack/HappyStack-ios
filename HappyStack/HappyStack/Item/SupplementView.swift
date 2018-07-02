@@ -161,7 +161,7 @@ class SupplementView: UIView {
             v.layer.cornerRadius = 8
         }
         image.style { i in
-            i.backgroundColor = UIColor(red: 229/255.0, green: 229/255.0, blue: 229/255.0, alpha: 1)
+            i.backgroundColor = UIColor(red: 87/255.0, green: 139/255.0, blue: 165/255.0, alpha: 0.15)
             i.layer.cornerRadius = 4
         }
         serving.field.keyboardType = .numberPad
