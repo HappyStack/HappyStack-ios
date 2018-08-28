@@ -14,19 +14,17 @@ class SupplementVC: UIViewController {
         return .lightContent
     }
     
-    var item: Item?
+    var item: Item
     
     var didCancel = {}
     var didDelete = {}
     var didAddSupplement = {}
-    var isNewItem = false
     
     var v = SupplementView()
     override func loadView() { view = v }
 
     convenience init() {
-        self.init(item: Item(name: ""))
-        isNewItem = true
+        self.init(item: Item())
     }
     
     init(item: Item) {
@@ -40,7 +38,7 @@ class SupplementVC: UIViewController {
     
     @objc
     func servingTypePillTapped() {
-        item?.serving = .pill
+        item.serving = .pill
         v.type.button1.setBackgroundColor(UIColor.clear, forState: .normal)
         v.type.button2.setBackgroundColor(UIColor.white.withAlphaComponent(0.5), forState: .normal)
         v.type.button3.setBackgroundColor(UIColor.white.withAlphaComponent(0.5), forState: .normal)
@@ -48,7 +46,7 @@ class SupplementVC: UIViewController {
     
     @objc
     func servingTypeScoopTapped() {
-        item?.serving = .scoop
+        item.serving = .scoop
         v.type.button1.setBackgroundColor(UIColor.white.withAlphaComponent(0.5), forState: .normal)
         v.type.button2.setBackgroundColor(UIColor.clear, forState: .normal)
         v.type.button3.setBackgroundColor(UIColor.white.withAlphaComponent(0.5), forState: .normal)
@@ -56,7 +54,7 @@ class SupplementVC: UIViewController {
     
     @objc
     func servingTypeDropTapped() {
-        item?.serving = .drop
+        item.serving = .drop
         v.type.button1.setBackgroundColor(UIColor.white.withAlphaComponent(0.5), forState: .normal)
         v.type.button2.setBackgroundColor(UIColor.white.withAlphaComponent(0.5), forState: .normal)
         v.type.button3.setBackgroundColor(UIColor.clear, forState: .normal)
@@ -70,11 +68,10 @@ class SupplementVC: UIViewController {
         v.type.button3.addTarget(self, action: #selector(servingTypeDropTapped), for: .touchUpInside)
         
         
+        v.deleteButton.isHidden = item.isNew
+        v.button.setTitle((item.isNew ? "Add my supplement" : "Save").uppercased() , for: .normal)
         
-        v.deleteButton.isHidden = isNewItem
-        v.button.setTitle((isNewItem ? "Add my supplement" : "Save").uppercased() , for: .normal)
-        
-        if let item = item {
+        if !item.isNew {
             v.name.field.text = item.name
             v.serving.field.text = "\(item.servingSize)"
             v.dosage.field.text = item.dosage
@@ -126,8 +123,7 @@ class SupplementVC: UIViewController {
     @objc
     func addSupplement() {
         
-        if var item = item {
-            
+        if !item.isNew {
             item.name = v.name.field.text!
             if let serving = v.serving.field.text, let servingInt = Int(serving) {
                 item.servingSize = servingInt
@@ -150,35 +146,33 @@ class SupplementVC: UIViewController {
    
             
             item.time = df.date(from: v.time.field.text!)!
-            
-            
-            item.saveInBackground()
-            view.endEditing(true)
-            didAddSupplement()
-        } else {
-            
-            let name = v.name.field.text!
-            var newItem = Item(name: name)//, dosage: dosage, time: time)
-            if let serving = v.serving.field.text, let servingInt = Int(serving) {
-                newItem.servingSize = servingInt
+
+            item.save().then { [weak self] in
+                self?.view.endEditing(true)
+                self?.didAddSupplement()
             }
-            newItem.dosage = v.dosage.field.text!
+
+        } else {
+            item.name = v.name.field.text ?? ""
+            if let serving = v.serving.field.text, let servingInt = Int(serving) {
+                item.servingSize = servingInt
+            }
+            item.dosage = v.dosage.field.text!
             
             // time.
             let calendar = NSCalendar.current
             let ca = calendar.dateComponents( [.hour, .minute], from:  v.datePicker.date)
             let time = calendar.date(from: ca)!
-            newItem.time = time
+            item.time = time
             
-            newItem.saveInBackground()
-            
-            v.name.field.text = ""
-            v.serving.field.text = ""
-            v.dosage.field.text = ""
-            v.time.field.text = ""
-            
-            view.endEditing(true)
-            didAddSupplement()
+            item.save().then { [weak self] in
+                self?.v.name.field.text = ""
+                self?.v.serving.field.text = ""
+                self?.v.dosage.field.text = ""
+                self?.v.time.field.text = ""
+                self?.view.endEditing(true)
+                self?.didAddSupplement()
+            }
         }
     }
         
@@ -198,18 +192,19 @@ class SupplementVC: UIViewController {
     
     @objc
     func deleteItem() {
-        guard let item = item else {
-            return 
-        }
         let alert = UIAlertController(title: "Remove",
                                       message: "Do you really want to remove \(item.name) from your stack?",
             preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Yup, I'm done with it", style: .default, handler: { [weak self] _ in
-            item.deleteInBackground()
-            self?.didDelete()
+            self?.item.delete().then {
+                self?.didDelete()
+            }
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
 }
 
+extension Item {
+    var isNew: Bool { return identifier == 0 }
+}

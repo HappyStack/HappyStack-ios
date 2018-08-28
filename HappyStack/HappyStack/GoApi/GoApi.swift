@@ -9,6 +9,7 @@
 import Foundation
 import ws
 import then
+import Alamofire
 
 class GoApi: Api {
     
@@ -18,6 +19,7 @@ class GoApi: Api {
     
     init() {
         network.logLevels = .debug
+        network.postParameterEncoding = JSONEncoding()
     }
     
     func fetchItemsForStack(stack: Stack) -> Promise<[Item]> {
@@ -29,7 +31,20 @@ class GoApi: Api {
     }
     
     func edit(item: Item) -> EmptyPromise {
-        // TODO
+        let params:[String : Any] = [
+            "name": item.name,
+            "dosage": item.dosage,
+            "servingSize": item.servingSize,
+            "servingType": item.serving.rawValue
+//            "timing": "0001-01-01T00:00:00Z"
+        ]
+        
+        // New item
+        if item.identifier == 0 {
+            return network.post("/users/1/items", params: params)
+        }
+        
+        // TODO implement edit item
         return Promise.reject()
     }
     
