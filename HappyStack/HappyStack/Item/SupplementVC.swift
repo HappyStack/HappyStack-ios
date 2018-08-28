@@ -101,6 +101,11 @@ class SupplementVC: UIViewController {
         servingTypePillTapped()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        v.name.field.becomeFirstResponder()
+    }
+    
     @objc
     func dateChanged() {
         let df = DateFormatter()
@@ -134,10 +139,16 @@ class SupplementVC: UIViewController {
 //            let ca = calendar.dateComponents( [.hour, .minute], from:  v.datePicker.date)
 //            let time = calendar.date(from: ca)!
 //            item.time = time
-            
+    
             // Set date picker date
             let df = DateFormatter()
             df.dateFormat = "h:mm a"
+            if let dateString = v.time.field.text, let date = df.date(from: dateString) {
+                
+                item.time = date
+            }
+   
+            
             item.time = df.date(from: v.time.field.text!)!
             
             

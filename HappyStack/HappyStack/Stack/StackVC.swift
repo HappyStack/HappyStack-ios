@@ -79,14 +79,17 @@ class StackVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }.sorted(by: { $0.name < $1.name })
     }
     var eveningItems:[Item] {
-        return items.filter { sixPm.compare($0.time) == .orderedAscending }
-                    .sorted(by: { $0.name < $1.name })
+        return items.filter {
+            return sixPm.compare($0.time) == .orderedAscending
+        }
+        .sorted(by: { $0.name < $1.name })
     }
     
     var noon:Date = {
         var d = Date()
         let calendar = Calendar.current
         var ba = calendar.dateComponents([.hour, .minute], from: d)
+        ba.year = 2000
         ba.hour = 12
         d = calendar.date(from: ba)!
         return d
@@ -96,6 +99,7 @@ class StackVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         var d = Date()
         let calendar = Calendar.current
         var ba = calendar.dateComponents([.hour, .minute], from: d)
+        ba.year = 2000
         ba.hour = 17
         d = calendar.date(from: ba)!
         return d
