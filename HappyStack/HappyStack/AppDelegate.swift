@@ -8,6 +8,13 @@
 
 import UIKit
 
+// Inject the api we want here.
+extension ApiProvider {
+    static func api() -> Api {
+        return GoApi.shared// LocalApi.shared
+    }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

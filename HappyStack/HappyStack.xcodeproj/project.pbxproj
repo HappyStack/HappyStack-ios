@@ -21,6 +21,7 @@
 		994F1FF121353FDC0009290F /* ws.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 994F1FF021353FDC0009290F /* ws.framework */; };
 		994F1FF4213540110009290F /* GoApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994F1FF3213540110009290F /* GoApi.swift */; };
 		994F1FF7213540380009290F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994F1FF6213540380009290F /* Persistence.swift */; };
+		994F1FF92135446F0009290F /* Item+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994F1FF82135446F0009290F /* Item+JSON.swift */; };
 		999455B720D8035B00B36C26 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 999455B520D8035B00B36C26 /* Lato-Bold.ttf */; };
 		999455B820D8035B00B36C26 /* Lato-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 999455B620D8035B00B36C26 /* Lato-Semibold.ttf */; };
 		999455BB20D809AC00B36C26 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 999455B920D808A300B36C26 /* Lato-Light.ttf */; };
@@ -59,6 +60,7 @@
 		994F1FF021353FDC0009290F /* ws.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ws.framework; path = Carthage/Build/iOS/ws.framework; sourceTree = "<group>"; };
 		994F1FF3213540110009290F /* GoApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoApi.swift; sourceTree = "<group>"; };
 		994F1FF6213540380009290F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		994F1FF82135446F0009290F /* Item+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+JSON.swift"; sourceTree = "<group>"; };
 		999455B520D8035B00B36C26 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
 		999455B620D8035B00B36C26 /* Lato-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Semibold.ttf"; sourceTree = "<group>"; };
 		999455B920D808A300B36C26 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				994F1FF3213540110009290F /* GoApi.swift */,
+				994F1FF82135446F0009290F /* Item+JSON.swift */,
 			);
 			path = GoApi;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				99A07D871FB5876100ABC308 /* ItemVC.swift in Sources */,
 				992AC2E51FB705B30054E711 /* Api.swift in Sources */,
 				99A07D821FB5866E00ABC308 /* ItemCell+Item.swift in Sources */,
+				994F1FF92135446F0009290F /* Item+JSON.swift in Sources */,
 				994F1FF7213540380009290F /* Persistence.swift in Sources */,
 				9912FC5D1FB852280047E37D /* User+Actions.swift in Sources */,
 				99DA0FF920603FCD003AC3B1 /* SupplementView.swift in Sources */,
