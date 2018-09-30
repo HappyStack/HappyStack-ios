@@ -10,6 +10,7 @@ import Foundation
 
 class User {
     static var current: User?
+    var identifier = 0
     let stack = Stack()
 }
 

@@ -40,7 +40,6 @@
 		99D53EDA1FB583A4000F286D /* StackVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D53ED91FB583A4000F286D /* StackVC.swift */; };
 		99DA0FF720603F8F003AC3B1 /* SupplementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DA0FF620603F8F003AC3B1 /* SupplementVC.swift */; };
 		99DA0FF920603FCD003AC3B1 /* SupplementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DA0FF820603FCD003AC3B1 /* SupplementView.swift */; };
-		99DB856D1FB8598A00720109 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DB856C1FB8598A00720109 /* Keyboard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,7 +78,6 @@
 		99D53ED91FB583A4000F286D /* StackVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackVC.swift; sourceTree = "<group>"; };
 		99DA0FF620603F8F003AC3B1 /* SupplementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementVC.swift; sourceTree = "<group>"; };
 		99DA0FF820603FCD003AC3B1 /* SupplementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementView.swift; sourceTree = "<group>"; };
-		99DB856C1FB8598A00720109 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,7 +122,6 @@
 				994F1FF221353FFA0009290F /* GoApi */,
 				994F1FF5213540290009290F /* LocalApi */,
 				9912FC571FB8514F0047E37D /* LoginVC.swift */,
-				99DB856C1FB8598A00720109 /* Keyboard.swift */,
 				9912FC591FB851560047E37D /* LoginView.swift */,
 				99C372EE20CEC7990001BFF4 /* UIColor+HappyStack.swift */,
 				99A07D791FB5846800ABC308 /* Stack */,
@@ -311,6 +308,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/ws.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Arrow.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/KeyboardLayoutGuide.framework",
 			);
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Stevia.framework",
@@ -318,10 +316,11 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ws.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Arrow.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Alamofire.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/KeyboardLayoutGuide.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -349,7 +348,6 @@
 				99DA0FF720603F8F003AC3B1 /* SupplementVC.swift in Sources */,
 				99A07D741FB5841500ABC308 /* User.swift in Sources */,
 				99C372EF20CEC7990001BFF4 /* UIColor+HappyStack.swift in Sources */,
-				99DB856D1FB8598A00720109 /* Keyboard.swift in Sources */,
 				990490E31FB48F2A00BE3E2F /* AppDelegate.swift in Sources */,
 				99A07D721FB5840500ABC308 /* Item+Actions.swift in Sources */,
 				99D53EDA1FB583A4000F286D /* StackVC.swift in Sources */,
@@ -426,6 +424,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -477,6 +476,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -497,7 +497,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.sainple.happystack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -518,7 +518,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.sainple.happystack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

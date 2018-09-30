@@ -23,11 +23,13 @@ class GoApi: Api {
     }
     
     func fetchItemsForStack(stack: Stack) -> Promise<[Item]> {
-        return network.get("/users/1/items")
+        let userId = User.current?.identifier ?? 0
+        return network.get("/users/\(userId)/items")
     }
     
     func delete(item: Item) -> EmptyPromise {
-        return network.delete("/users/1/items/\(item.identifier)")
+        let userId = User.current?.identifier ?? 0
+        return network.delete("/users/\(userId)/items/\(item.identifier)")
     }
     
     func edit(item: Item) -> EmptyPromise {
@@ -39,13 +41,15 @@ class GoApi: Api {
 //            "timing": "0001-01-01T00:00:00Z"
         ]
         
+        let userId = User.current?.identifier ?? 0
+        
         // New item
         if item.identifier == 0 {
-            return network.post("/users/1/items", params: params)
+            return network.post("/users/\(userId)/items", params: params)
         }
         
         // TODO implement edit item
-        return Promise.reject()
+        return network.put("/users/\(userId)/items/\(item.identifier)", params: params)
     }
     
     func login(username: String, password: String) -> Promise<User> {

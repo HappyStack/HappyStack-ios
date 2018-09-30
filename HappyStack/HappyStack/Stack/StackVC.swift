@@ -13,7 +13,7 @@ class StackView: UIView {
     
     let background = UIImageView(image: #imageLiteral(resourceName: "BG"))
     let tableView = UITableView(frame: .zero, style: .grouped)
-    let iButton = UIButton(type: UIButtonType.infoLight)
+    let iButton = UIButton(type: UIButton.ButtonType.infoLight)
     let refreshControl = UIRefreshControl()
     
     convenience init() {

@@ -15,7 +15,7 @@ class MoreVC : UITableViewController {
     var didClose = {}
     
     convenience init() {
-        self.init(style: UITableViewStyle.grouped)
+        self.init(style: UITableView.Style.grouped)
         title = "More"
     }
     
@@ -44,7 +44,7 @@ class MoreVC : UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCell(withIdentifier: "MoreCell")
         if (cell == nil) {
-            cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "MoreCell")
+            cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "MoreCell")
         }
         
         if let c = cell {
@@ -110,7 +110,7 @@ class MoreVC : UITableViewController {
         // let imageToShare = Put logo here
         // let urlToShare = Put url here (store website?)
         let activityItems = [textToShare];
-        let excludedactivities: [UIActivityType] = [.postToWeibo,
+        let excludedactivities: [UIActivity.ActivityType] = [.postToWeibo,
                                   .assignToContact,
                                   .copyToPasteboard,
                                   .print,

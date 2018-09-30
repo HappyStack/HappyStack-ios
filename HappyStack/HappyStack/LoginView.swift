@@ -7,10 +7,10 @@
 //
 
 import Stevia
+import KeyboardLayoutGuide
 
 final class LoginView: UIView {
     
-    let keyboard = Keyboard()
     let login = UIButton()
     let emailBackground = UIView()
     let email = UITextField()
@@ -19,7 +19,6 @@ final class LoginView: UIView {
     
     convenience init() {
         self.init(frame: CGRect.zero)
-        keyboard.initializeKeyboardLayoutGuide(inView: self)
         
         sv(
             emailBackground.sv(
@@ -40,7 +39,7 @@ final class LoginView: UIView {
             |login| ~ 60
         )
         
-        login.bottomAnchor.constraint(equalTo: keyboard.topAnchor).isActive = true
+        login.Bottom == keyboardLayoutGuide.Top
         
         layout(
             0,
@@ -95,7 +94,7 @@ extension LoginView: UITextFieldDelegate {
 
 
 extension UIButton {
-    public func setBackgroundColor(_ color: UIColor, forState: UIControlState) {
+    public func setBackgroundColor(_ color: UIColor, forState: UIControl.State) {
         let img = UIImage(color: color, size: CGSize(width: 1.0, height: 1.0))
         setBackgroundImage(img, for: forState)
     }
