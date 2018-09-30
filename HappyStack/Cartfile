@@ -1,2 +1,4 @@
-github "freshos/Stevia"
-github "freshos/then"
+github "freshos/Stevia" "4.4.0"
+github "freshos/ws" "3.2.0"
+github "freshos/then" "4.2.0"
+github "freshos/KeyboardLayoutGuide" "1.3.0"

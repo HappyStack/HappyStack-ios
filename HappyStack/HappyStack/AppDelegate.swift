@@ -8,26 +8,34 @@
 
 import UIKit
 
+// Inject the api we want here.
+extension ApiProvider {
+    static func api() -> Api {
+        return GoApi.shared// LocalApi.shared
+    }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         sytleNavBar()
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        
-        User.current = User()
-        startLoggedInApp(user: User.current!)
-//        if let user = User.current {
-//            
-//        } else {
-//
-//            let loginVC = LoginVC()
-//            loginVC.delegate = self
-//            window?.rootViewController = HSNAvigationController(rootViewController: loginVC)
-//        }
+        // Fake user
+        let user = User()
+        user.identifier = 1
+        User.current = user
+
+        if let user = User.current {
+            startLoggedInApp(user: user)
+        } else {
+            let loginVC = LoginVC()
+            loginVC.delegate = self
+            window?.rootViewController = HSNAvigationController(rootViewController: loginVC)
+        }
         
 //        var vitaminD = Item(identifier: "gv3rf3",
 //                        name: "Vitamin D3",
@@ -46,19 +54,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                            isChecked: true)
 //        whey.serving = .scoop
         
-        window?.rootViewController = StackVC(stack: User.current!.stack)
         
         window?.makeKeyAndVisible()
         return true
     }
     
     func startLoggedInApp(user: User) {
-        let stackVC = StackVC(stack: user.stack)
-        window?.rootViewController = HSNAvigationController(rootViewController: stackVC)
+        window?.rootViewController = StackVC(stack: user.stack)
     }
     
     func sytleNavBar() {
-        let navbarTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
+        let navbarTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
         UINavigationBar.appearance().barTintColor = UIColor.black
         UINavigationBar.appearance().titleTextAttributes = navbarTitleTextAttributes
         UINavigationBar.appearance().tintColor = UIColor.white

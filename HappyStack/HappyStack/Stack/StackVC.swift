@@ -13,7 +13,8 @@ class StackView: UIView {
     
     let background = UIImageView(image: #imageLiteral(resourceName: "BG"))
     let tableView = UITableView(frame: .zero, style: .grouped)
-    let iButton = UIButton(type: UIButtonType.infoLight)
+    let iButton = UIButton(type: UIButton.ButtonType.infoLight)
+    let refreshControl = UIRefreshControl()
     
     convenience init() {
         self.init(frame: CGRect.zero)
@@ -23,6 +24,8 @@ class StackView: UIView {
             tableView,
             iButton
         )
+        
+        tableView.addSubview(refreshControl)
         
         background.fillContainer()
         tableView.fillHorizontally(m: 15).fillVertically()
@@ -107,6 +110,8 @@ class StackVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        v.refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
 
         v.tableView.rowHeight = 78
         
@@ -148,7 +153,6 @@ class StackVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @objc
     func refresh() {
         stack.fetch().then {
-            
             self.stack.items.sort(by:{ (a, b) -> Bool in
                 
                 let calendar = Calendar.current
@@ -162,6 +166,7 @@ class StackVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                 
                 return atime.compare(btime) == .orderedAscending
             })
+            self.v.refreshControl.endRefreshing()
             self.v.tableView.reloadData()
             self.scheduleNotification()
         }
@@ -355,7 +360,7 @@ class StackVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                                   dosage: selectedItem.dosage,
                                   time: selectedItem.time,
                                   isChecked: checked)
-            editedItem.saveInBackground()
+            editedItem.save().start()
             block(true)
             
             let hapticFeedback = UIImpactFeedbackGenerator(style: .medium)

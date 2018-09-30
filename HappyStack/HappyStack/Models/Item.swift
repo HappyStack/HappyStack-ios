@@ -17,15 +17,15 @@ enum Serving:String, Codable {
 
 struct Item: Codable {
     
-    let identifier: String
+    var identifier: Int
     var name: String
     var dosage: String
     var time: Date
     var serving = Serving.pill
     var servingSize: Int = 1
-    let isChecked: Bool
+    var isChecked: Bool
     
-    init(identifier: String = UUID().uuidString,
+    init(identifier: Int = 0,
          name: String = "My supplement",
          dosage: String = "",
          time: Date = Date(),

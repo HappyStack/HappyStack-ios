@@ -16,6 +16,12 @@
 		9912FC5D1FB852280047E37D /* User+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9912FC5C1FB852280047E37D /* User+Actions.swift */; };
 		992AC2E51FB705B30054E711 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992AC2E41FB705B30054E711 /* Api.swift */; };
 		992AC2E71FB706F00054E711 /* LocalApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992AC2E61FB706F00054E711 /* LocalApi.swift */; };
+		994F1FED21353FD60009290F /* Arrow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 994F1FEC21353FD60009290F /* Arrow.framework */; };
+		994F1FEF21353FD80009290F /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 994F1FEE21353FD80009290F /* Alamofire.framework */; };
+		994F1FF121353FDC0009290F /* ws.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 994F1FF021353FDC0009290F /* ws.framework */; };
+		994F1FF4213540110009290F /* GoApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994F1FF3213540110009290F /* GoApi.swift */; };
+		994F1FF7213540380009290F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994F1FF6213540380009290F /* Persistence.swift */; };
+		994F1FF92135446F0009290F /* Item+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994F1FF82135446F0009290F /* Item+JSON.swift */; };
 		999455B720D8035B00B36C26 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 999455B520D8035B00B36C26 /* Lato-Bold.ttf */; };
 		999455B820D8035B00B36C26 /* Lato-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 999455B620D8035B00B36C26 /* Lato-Semibold.ttf */; };
 		999455BB20D809AC00B36C26 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 999455B920D808A300B36C26 /* Lato-Light.ttf */; };
@@ -34,7 +40,6 @@
 		99D53EDA1FB583A4000F286D /* StackVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D53ED91FB583A4000F286D /* StackVC.swift */; };
 		99DA0FF720603F8F003AC3B1 /* SupplementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DA0FF620603F8F003AC3B1 /* SupplementVC.swift */; };
 		99DA0FF920603FCD003AC3B1 /* SupplementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DA0FF820603FCD003AC3B1 /* SupplementView.swift */; };
-		99DB856D1FB8598A00720109 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DB856C1FB8598A00720109 /* Keyboard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +54,12 @@
 		9912FC5C1FB852280047E37D /* User+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Actions.swift"; sourceTree = "<group>"; };
 		992AC2E41FB705B30054E711 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		992AC2E61FB706F00054E711 /* LocalApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalApi.swift; sourceTree = "<group>"; };
+		994F1FEC21353FD60009290F /* Arrow.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Arrow.framework; path = Carthage/Build/iOS/Arrow.framework; sourceTree = "<group>"; };
+		994F1FEE21353FD80009290F /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		994F1FF021353FDC0009290F /* ws.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ws.framework; path = Carthage/Build/iOS/ws.framework; sourceTree = "<group>"; };
+		994F1FF3213540110009290F /* GoApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoApi.swift; sourceTree = "<group>"; };
+		994F1FF6213540380009290F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		994F1FF82135446F0009290F /* Item+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+JSON.swift"; sourceTree = "<group>"; };
 		999455B520D8035B00B36C26 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
 		999455B620D8035B00B36C26 /* Lato-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Semibold.ttf"; sourceTree = "<group>"; };
 		999455B920D808A300B36C26 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
@@ -67,7 +78,6 @@
 		99D53ED91FB583A4000F286D /* StackVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackVC.swift; sourceTree = "<group>"; };
 		99DA0FF620603F8F003AC3B1 /* SupplementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementVC.swift; sourceTree = "<group>"; };
 		99DA0FF820603FCD003AC3B1 /* SupplementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplementView.swift; sourceTree = "<group>"; };
-		99DB856C1FB8598A00720109 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +87,9 @@
 			files = (
 				99A07D801FB5863C00ABC308 /* Stevia.framework in Frameworks */,
 				99117A891FB85EF8003CA447 /* then.framework in Frameworks */,
+				994F1FED21353FD60009290F /* Arrow.framework in Frameworks */,
+				994F1FF121353FDC0009290F /* ws.framework in Frameworks */,
+				994F1FEF21353FD80009290F /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,9 +119,9 @@
 				999455B420D8035B00B36C26 /* Resources */,
 				990490E21FB48F2A00BE3E2F /* AppDelegate.swift */,
 				992AC2E41FB705B30054E711 /* Api.swift */,
-				992AC2E61FB706F00054E711 /* LocalApi.swift */,
+				994F1FF221353FFA0009290F /* GoApi */,
+				994F1FF5213540290009290F /* LocalApi */,
 				9912FC571FB8514F0047E37D /* LoginVC.swift */,
-				99DB856C1FB8598A00720109 /* Keyboard.swift */,
 				9912FC591FB851560047E37D /* LoginView.swift */,
 				99C372EE20CEC7990001BFF4 /* UIColor+HappyStack.swift */,
 				99A07D791FB5846800ABC308 /* Stack */,
@@ -121,6 +134,24 @@
 				990490EE1FB48F2A00BE3E2F /* Info.plist */,
 			);
 			path = HappyStack;
+			sourceTree = "<group>";
+		};
+		994F1FF221353FFA0009290F /* GoApi */ = {
+			isa = PBXGroup;
+			children = (
+				994F1FF3213540110009290F /* GoApi.swift */,
+				994F1FF82135446F0009290F /* Item+JSON.swift */,
+			);
+			path = GoApi;
+			sourceTree = "<group>";
+		};
+		994F1FF5213540290009290F /* LocalApi */ = {
+			isa = PBXGroup;
+			children = (
+				992AC2E61FB706F00054E711 /* LocalApi.swift */,
+				994F1FF6213540380009290F /* Persistence.swift */,
+			);
+			path = LocalApi;
 			sourceTree = "<group>";
 		};
 		999455B420D8035B00B36C26 /* Resources */ = {
@@ -174,6 +205,9 @@
 		99A07D7E1FB5863C00ABC308 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				994F1FF021353FDC0009290F /* ws.framework */,
+				994F1FEE21353FD80009290F /* Alamofire.framework */,
+				994F1FEC21353FD60009290F /* Arrow.framework */,
 				99117A881FB85EF8003CA447 /* then.framework */,
 				99A07D7F1FB5863C00ABC308 /* Stevia.framework */,
 			);
@@ -271,14 +305,22 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Stevia.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/then.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ws.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Arrow.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/KeyboardLayoutGuide.framework",
 			);
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Stevia.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/then.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ws.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Arrow.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Alamofire.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/KeyboardLayoutGuide.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -298,12 +340,14 @@
 				99A07D871FB5876100ABC308 /* ItemVC.swift in Sources */,
 				992AC2E51FB705B30054E711 /* Api.swift in Sources */,
 				99A07D821FB5866E00ABC308 /* ItemCell+Item.swift in Sources */,
+				994F1FF92135446F0009290F /* Item+JSON.swift in Sources */,
+				994F1FF7213540380009290F /* Persistence.swift in Sources */,
 				9912FC5D1FB852280047E37D /* User+Actions.swift in Sources */,
 				99DA0FF920603FCD003AC3B1 /* SupplementView.swift in Sources */,
+				994F1FF4213540110009290F /* GoApi.swift in Sources */,
 				99DA0FF720603F8F003AC3B1 /* SupplementVC.swift in Sources */,
 				99A07D741FB5841500ABC308 /* User.swift in Sources */,
 				99C372EF20CEC7990001BFF4 /* UIColor+HappyStack.swift in Sources */,
-				99DB856D1FB8598A00720109 /* Keyboard.swift in Sources */,
 				990490E31FB48F2A00BE3E2F /* AppDelegate.swift in Sources */,
 				99A07D721FB5840500ABC308 /* Item+Actions.swift in Sources */,
 				99D53EDA1FB583A4000F286D /* StackVC.swift in Sources */,
@@ -380,6 +424,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -431,6 +476,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -451,7 +497,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.sainple.happystack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -472,7 +518,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.sainple.happystack;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

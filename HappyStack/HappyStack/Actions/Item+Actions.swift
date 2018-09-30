@@ -7,17 +7,16 @@
 //
 
 import Foundation
+import then
 
 extension Item {
     
-    func saveInBackground() {
-        let api = ApiProvider.api()
-        api.edit(item: self).start()
+    func save() -> EmptyPromise {
+        return ApiProvider.api().edit(item: self)
     }
     
-    func deleteInBackground() {
-        let api = ApiProvider.api()
-        api.delete(item: self).start()
+    func delete() -> EmptyPromise  {
+        return ApiProvider.api().delete(item: self)
     }
 }
                     
