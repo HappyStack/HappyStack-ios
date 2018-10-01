@@ -13,7 +13,7 @@ protocol LoginVCDelegate: class {
     func loginVCDidLogin(user: User)
 }
 
-final class LoginVC: UIViewController {
+final class LoginVC: UIViewController, UITextFieldDelegate {
     
     weak var delegate: LoginVCDelegate?
     var counter = 5
@@ -25,11 +25,19 @@ final class LoginVC: UIViewController {
         title = "Login"
         v.login.addTarget(self, action: #selector(login), for: .touchUpInside)
         prefillWithPreviouslyUsedEmail()
+        
+        v.password.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        v.email.becomeFirstResponder()
+//        v.email.becomeFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        v.email.resignFirstResponder()
+        login()
+        return true
     }
     
     @objc

@@ -16,7 +16,9 @@ extension User {
     }
     
     func logout() {
+        User.current = nil
         let api = ApiProvider.api()
         api.logout()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "didLogout"), object: nil, userInfo: nil)
     }
 }

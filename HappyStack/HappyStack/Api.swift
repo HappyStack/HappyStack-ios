@@ -8,6 +8,7 @@
 
 import Foundation
 import then
+import Arrow
 
 protocol Api {
     func fetchItemsForStack(stack: Stack) -> Promise<[Item]>

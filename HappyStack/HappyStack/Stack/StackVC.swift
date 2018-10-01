@@ -30,8 +30,8 @@ class StackView: UIView {
         background.fillContainer()
         tableView.fillHorizontally(m: 15).fillVertically()
         
-        iButton.left(20).bottom(20)
-        
+        iButton.left(20)
+        iButton.Bottom == safeAreaLayoutGuide.Bottom
         
         iButton.tintColor = .white
         
@@ -122,9 +122,6 @@ class StackVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         v.tableView.tableHeaderView = addButton
         
         v.iButton.addTarget(self, action: #selector(infoTapped), for: .touchUpInside)
-        
-        
-        v.iButton.isHidden = true
     }
     
     @objc

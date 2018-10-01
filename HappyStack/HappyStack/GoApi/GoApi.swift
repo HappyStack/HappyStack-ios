@@ -10,11 +10,15 @@ import Foundation
 import ws
 import then
 import Alamofire
+import Arrow
 
 class GoApi: Api {
     
+    var authtoken: String?
+    
     static let shared = GoApi()
     
+//    let network = WS("http://localhost:8080")
     let network = WS("http://104.248.56.250:8080")
     
     init() {
@@ -53,11 +57,23 @@ class GoApi: Api {
     }
     
     func login(username: String, password: String) -> Promise<User> {
-        // TODO
-        return Promise.reject()
+//    {
+//        "username" : "sachadso@gmail.com",
+//        "password" : "toto1234"
+//        }
+        return network.post("/login", params:
+            ["username" : username,
+             "password" : password]).then { (json:JSON) -> User in
+                print(json)
+                
+                let user = User()
+                user.identifier = 1
+                return user
+        }
     }
     
     func logout() {
+        authtoken = nil
         // TODO
     }
 }

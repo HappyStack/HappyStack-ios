@@ -11,6 +11,7 @@ import KeyboardLayoutGuide
 
 final class LoginView: UIView {
     
+    let background = UIImageView(image: #imageLiteral(resourceName: "BG"))
     let login = UIButton()
     let emailBackground = UIView()
     let email = UITextField()
@@ -21,6 +22,7 @@ final class LoginView: UIView {
         self.init(frame: CGRect.zero)
         
         sv(
+            background,
             emailBackground.sv(
                 email
             ),
@@ -29,6 +31,8 @@ final class LoginView: UIView {
             ),
            login
         )
+        
+        background.fillContainer()
         
         layout(
             100,
@@ -69,8 +73,10 @@ final class LoginView: UIView {
             f.returnKeyType = .send
             f.clearButtonMode = .whileEditing
         }
-        login.setBackgroundColor(.black, forState: .normal)
-        login.setTitleColor(.white, for: .normal)
+        login.setBackgroundColor(.white, forState: .normal)
+        login.setTitleColor(.themeDarkColor, for: .normal)
+        login.titleLabel?.font = UIFont(name: "Lato-Bold", size: 15)
+        
         
         email.placeholder = "Email"
         password.placeholder = "Password"
