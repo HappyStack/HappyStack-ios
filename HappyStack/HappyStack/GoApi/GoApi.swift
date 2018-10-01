@@ -30,8 +30,6 @@ extension WS {
 
 class GoApi: Api {
     
-    var authtoken: String?
-    
     static let shared = GoApi()
     
     //    let network = WS("http://localhost:8080")
@@ -99,7 +97,20 @@ class GoApi: Api {
     }
     
     func userIdFromToken(token: String) -> Int? {
-        let tokenMiddleSection = String(token.split(separator: ".")[1]) + "="
+        var tokenMiddleSection = String(token.split(separator: ".")[1])
+        
+        let rest = tokenMiddleSection.count % 4
+        print(rest)
+            
+        if rest == 1 {
+            tokenMiddleSection += "==="
+        }
+        if rest == 2 {
+            tokenMiddleSection += "=="
+        }
+        if rest == 3 {
+            tokenMiddleSection += "="
+        }
         if let decodedData = Data(base64Encoded: tokenMiddleSection),
             let decodedString = String(data: decodedData, encoding: .utf8) {
             let tokenJsonPayload = JSON(decodedString)
@@ -111,7 +122,6 @@ class GoApi: Api {
     }
     
     func logout() {
-        authtoken = nil
-        // TODO
+        network.jwtToken = nil
     }
 }
